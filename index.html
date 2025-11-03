@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neyaz Ahmed - Portfolio</title>
+    <title>Neyaz Ahmed - Academic Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -12,197 +12,393 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #1a1a1a;
+            background: #f5f5f5;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
         }
 
         header {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 40px;
-            text-align: center;
+            padding: 60px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0 Q300,40 600,20 T1200,30 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.05)"/></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        header .header-content {
+            position: relative;
+            z-index: 1;
         }
 
         header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+            font-size: 3em;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-family: 'Palatino', 'Georgia', serif;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            font-weight: 300;
+            margin-bottom: 25px;
+            opacity: 0.95;
+            font-family: 'Helvetica', 'Arial', sans-serif;
         }
 
         .contact-info {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 25px;
+            font-family: 'Helvetica', 'Arial', sans-serif;
             font-size: 0.95em;
+            opacity: 0.9;
         }
 
         .contact-info a {
-            color: #ecf0f1;
+            color: white;
             text-decoration: none;
-            transition: color 0.3s;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: border-color 0.3s;
         }
 
         .contact-info a:hover {
-            color: #3498db;
+            border-bottom-color: white;
+        }
+
+        nav {
+            background: #2a5298;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 18px 25px;
+            color: white;
+            text-decoration: none;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .content {
-            padding: 40px;
+            padding: 60px 50px;
         }
 
         section {
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         h2 {
-            color: #2c3e50;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
-            display: inline-block;
+            color: #1e3c72;
+            font-size: 2em;
+            font-weight: 400;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #1e3c72;
+            font-family: 'Palatino', 'Georgia', serif;
+            letter-spacing: 1px;
         }
 
-        .education-item, .project-item, .publication-item {
-            margin-bottom: 25px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
+        .education-item, .experience-item, .project-item {
+            margin-bottom: 35px;
+            padding: 30px;
+            background: #fafafa;
+            border-left: 4px solid #2a5298;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .education-item h3, .project-item h3 {
-            color: #34495e;
+        .education-item:hover, .experience-item:hover, .project-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .education-item h3, .experience-item h3, .project-item h3 {
+            color: #1e3c72;
+            font-size: 1.3em;
+            font-weight: 600;
             margin-bottom: 8px;
-            font-size: 1.2em;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+        }
+
+        .institution {
+            font-size: 1.05em;
+            color: #2a5298;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
 
         .date {
-            color: #7f8c8d;
+            color: #666;
             font-style: italic;
-            font-size: 0.9em;
+            font-size: 0.95em;
+            font-family: 'Helvetica', 'Arial', sans-serif;
         }
 
-        .skills-grid {
+        .details {
+            margin-top: 12px;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.8;
+        }
+
+        .details p {
+            margin-bottom: 8px;
+        }
+
+        .details strong {
+            color: #1e3c72;
+            font-weight: 600;
+        }
+
+        .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
         }
 
-        .skill-item {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .skill-category {
+            background: #fafafa;
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 3px solid #2a5298;
+        }
+
+        .skill-category h4 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 8px 0;
+            color: #333;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .skill-list li::before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: #2a5298;
+            font-size: 1.2em;
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .interest-card {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 15px;
+            padding: 30px;
             border-radius: 8px;
             text-align: center;
+            font-size: 1.1em;
             font-weight: 600;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            letter-spacing: 0.5px;
             transition: transform 0.3s;
         }
 
-        .skill-item:hover {
+        .interest-card:hover {
             transform: translateY(-5px);
         }
 
-        .interests-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
+        .publication-item {
+            margin-bottom: 25px;
+            padding: 25px;
+            background: #fafafa;
+            border-left: 4px solid #2a5298;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.8;
         }
 
-        .interest-tag {
-            background: #ecf0f1;
-            padding: 10px 20px;
-            border-radius: 20px;
-            color: #2c3e50;
-            font-weight: 600;
+        .publication-item p {
+            text-align: justify;
         }
 
         .achievements-list {
             list-style: none;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         .achievements-list li {
-            padding: 10px 0;
-            padding-left: 30px;
-            position: relative;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background: #fafafa;
+            border-left: 4px solid #2a5298;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            transition: transform 0.3s;
         }
 
-        .achievements-list li:before {
-            content: "★";
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-size: 1.2em;
+        .achievements-list li:hover {
+            transform: translateX(5px);
+        }
+
+        .test-results {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .test-score {
+            background: #1e3c72;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            box-shadow: 0 3px 10px rgba(30, 60, 114, 0.2);
         }
 
         .references-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .reference-card {
-            background: #f8f9fa;
-            padding: 20px;
+            background: #fafafa;
+            padding: 30px;
             border-radius: 8px;
-            border: 2px solid #667eea;
+            border-top: 3px solid #2a5298;
         }
 
         .reference-card h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
+            color: #1e3c72;
+            margin-bottom: 8px;
+            font-size: 1.2em;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+        }
+
+        .reference-card .title {
+            color: #2a5298;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-family: 'Helvetica', 'Arial', sans-serif;
         }
 
         .reference-card p {
-            margin: 5px 0;
-            font-size: 0.95em;
+            margin: 8px 0;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            color: #333;
         }
 
-        .test-score {
+        .scholarship-badge {
             display: inline-block;
-            background: #2ecc71;
+            background: #2a5298;
             color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            margin: 5px;
-            font-weight: 600;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 5px 5px 5px 0;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+        }
+
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-family: 'Helvetica', 'Arial', sans-serif;
         }
 
         @media (max-width: 768px) {
+            header {
+                padding: 40px 30px;
+            }
+
             header h1 {
-                font-size: 1.8em;
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 40px 30px;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li a {
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .item-header {
+                flex-direction: column;
             }
 
             .contact-info {
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
             }
+        }
 
-            .content {
-                padding: 20px;
+        @media print {
+            nav {
+                display: none;
             }
-
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            
+            .education-item, .experience-item, .project-item {
+                page-break-inside: avoid;
             }
         }
     </style>
@@ -210,104 +406,90 @@
 <body>
     <div class="container">
         <header>
-            <h1>NEYAZ AHMED</h1>
-            <div class="contact-info">
-                <span>📞 +8801306674664</span>
-                <span>📍 Dhaka, Bangladesh</span>
-                <span>✉️ <a href="mailto:Niazahmed1864@gmail.com">Niazahmed1864@gmail.com</a></span>
-                <span>✉️ <a href="mailto:1710007@me.buet.ac.bd">1710007@me.buet.ac.bd</a></span>
+            <div class="header-content">
+                <h1>NEYAZ AHMED</h1>
+                <p class="subtitle">Mechanical Engineer | Researcher in Applied Mathematics & Computational Science</p>
+                <div class="contact-info">
+                    <span>📞 +8801306674664</span>
+                    <span>📍 Dhaka, Bangladesh</span>
+                    <span><a href="mailto:Niazahmed1864@gmail.com">Niazahmed1864@gmail.com</a></span>
+                    <span><a href="mailto:1710007@me.buet.ac.bd">1710007@me.buet.ac.bd</a></span>
+                </div>
             </div>
         </header>
+
+        <nav>
+            <ul>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </nav>
 
         <div class="content">
             <section id="education">
                 <h2>Education</h2>
                 
                 <div class="education-item">
-                    <h3>Master of Science in Applied Mathematics and Computational Science (MSc in AMCS)</h3>
-                    <p><strong>North South University</strong> <span class="date">2024 - Present</span></p>
-                    <p><strong>Performance:</strong> 85% Until 3rd semester</p>
-                    <p><strong>Thesis:</strong> Numerical investigation on heat transfer of supercritical carbon dioxide in the microtube heat exchanger at different Reynolds Number.</p>
+                    <div class="item-header">
+                        <div>
+                            <h3>Master of Science in Applied Mathematics and Computational Science</h3>
+                            <p class="institution">North South University</p>
+                        </div>
+                        <span class="date">2024 - Present</span>
+                    </div>
+                    <div class="details">
+                        <p><strong>Performance:</strong> 85% Until 3rd semester</p>
+                        <p><strong>Thesis:</strong> Numerical investigation on heat transfer of supercritical carbon dioxide in the microtube heat exchanger at different Reynolds Number.</p>
+                    </div>
                 </div>
 
                 <div class="education-item">
-                    <h3>Bachelor of Mechanical Engineering</h3>
-                    <p><strong>Shahjalal University of Science and Technology</strong> <span class="date">2018 - 2023</span></p>
-                    <p><strong>CGPA:</strong> 2.86/4.00</p>
-                    <p><strong>Undergraduate Thesis:</strong> Consumer Gas Risk Analysis in Bangladesh: A Case Study of Utility Gas and Liquefied Petroleum Gas (LPG) Safety</p>
-                    <p><strong>Supervisor:</strong> Labiba Nusrat Jahan, Associate Professor, Department of Petroleum and Mining Engineering, SUST</p>
+                    <div class="item-header">
+                        <div>
+                            <h3>Bachelor of Science in Mechanical Engineering</h3>
+                            <p class="institution">Shahjalal University of Science and Technology</p>
+                        </div>
+                        <span class="date">2018 - 2023</span>
+                    </div>
+                    <div class="details">
+                        <p><strong>CGPA:</strong> 2.86/4.00</p>
+                        <p><strong>Undergraduate Thesis:</strong> Consumer Gas Risk Analysis in Bangladesh: A Case Study of Utility Gas and Liquefied Petroleum Gas (LPG) Safety</p>
+                        <p><strong>Supervisor:</strong> Labiba Nusrat Jahan, Associate Professor, Department of Petroleum and Mining Engineering, SUST</p>
+                    </div>
                 </div>
 
                 <div class="education-item">
-                    <h3>Higher Secondary School Certificate</h3>
-                    <p><strong>Jhenaidah Cadet College</strong> <span class="date">2015 - 2017</span></p>
-                    <p><strong>GPA:</strong> 5.00/5.00</p>
-                    <ul style="margin-top: 10px; list-style-position: inside;">
-                        <li>National Board Scholarship in Higher Secondary Certificate exam (2017)</li>
-                        <li>National Board Scholarship in Secondary School Certificate exam (2015)</li>
-                    </ul>
+                    <div class="item-header">
+                        <div>
+                            <h3>Higher Secondary School Certificate</h3>
+                            <p class="institution">Jhenaidah Cadet College</p>
+                        </div>
+                        <span class="date">2015 - 2017</span>
+                    </div>
+                    <div class="details">
+                        <p><strong>GPA:</strong> 5.00/5.00</p>
+                        <div style="margin-top: 12px;">
+                            <span class="scholarship-badge">🏆 National Board Scholarship - HSC (2017)</span>
+                            <span class="scholarship-badge">🏆 National Board Scholarship - SSC (2015)</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <section id="research">
                 <h2>Research Interests</h2>
-                <div class="interests-list">
-                    <span class="interest-tag">Fluid Mechanics</span>
-                    <span class="interest-tag">Heat Transfer</span>
-                    <span class="interest-tag">CFD</span>
-                    <span class="interest-tag">Control Engineering</span>
-                    <span class="interest-tag">Machine Learning</span>
-                </div>
-            </section>
-
-            <section id="skills">
-                <h2>Technical Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-item">Comsol</div>
-                    <div class="skill-item">MATLAB</div>
-                    <div class="skill-item">Simulink</div>
-                    <div class="skill-item">AutoCAD</div>
-                    <div class="skill-item">Python</div>
-                    <div class="skill-item">MS Office</div>
-                    <div class="skill-item">Solidworks</div>
-                    <div class="skill-item">C++ & C</div>
-                    <div class="skill-item">Proteus</div>
-                </div>
-            </section>
-
-            <section id="experience">
-                <h2>Work Experience</h2>
-                
-                <div class="education-item">
-                    <h3>Research Assistant</h3>
-                    <p><strong>North South University</strong></p>
-                </div>
-
-                <div class="education-item">
-                    <h3>Intern</h3>
-                    <p><strong>Gozayaan Limited</strong> <span class="date">Oct. 2022 - Nov. 2022</span></p>
-                </div>
-            </section>
-
-            <section id="projects">
-                <h2>Projects</h2>
-                
-                <div class="project-item">
-                    <h3>Curved Plate and Frame Heat Exchanger</h3>
-                    <p class="date">Jan 2022</p>
-                    <p>This project was an attempt to improve the efficiency of the plate heat exchanger using curved plates instead of traditional flat plates. SOLIDWORKS, HTRI Xchanger and ANSYS FLUENT were used extensively for design and simulation purposes.</p>
-                </div>
-
-                <div class="project-item">
-                    <h3>Lungs Performance Analysis Using Spirometry</h3>
-                    <p class="date">July 2021</p>
-                    <p>In the post-Covid situation, this project was an attempt to design an efficient yet affordable device that can predict the lung condition of the user. This was achieved by measuring the forced vital capacity of the user with an Arduino and a machine learning model trained with MATLAB.</p>
-                </div>
-
-                <div class="project-item">
-                    <h3>Mars Rover of Team Interplaneter (Mars Rover Team of BUET)</h3>
-                    <p class="date">2021</p>
-                    <p>Designing and manufacturing of the wheel, chassis and suspension system for Anweshan 3 mars rover using SOLIDWORKS with a view to participate in University Rover Challenge and European Rover Challenge competitions.</p>
+                <div class="interests-grid">
+                    <div class="interest-card">Fluid Mechanics</div>
+                    <div class="interest-card">Heat Transfer</div>
+                    <div class="interest-card">Computational Fluid Dynamics</div>
+                    <div class="interest-card">Control Engineering</div>
+                    <div class="interest-card">Machine Learning</div>
                 </div>
             </section>
 
@@ -315,20 +497,114 @@
                 <h2>Publications</h2>
                 
                 <div class="publication-item">
-                    <p><strong>Accepted Journal Article:</strong> R. Islam, A.N.M.F. Islam and S. Saha, Effect of Time-Dependent Wall Temperature on Conjugate Mixed Convection Inside a Chamber with an Oscillating Cylinder, International Communications in Heat and Mass Transfer.</p>
+                    <p><strong>R. Islam, A.N.M.F. Islam and S. Saha</strong> (Accepted). Effect of Time-Dependent Wall Temperature on Conjugate Mixed Convection Inside a Chamber with an Oscillating Cylinder. <em>International Communications in Heat and Mass Transfer.</em></p>
                 </div>
 
                 <div class="publication-item">
-                    <p>A.N.M.F. Islam, R. Islam, M.R. Hossain and S. Saha, Conjugate Mixed Convection in a Differentially Heated Square Cavity with a Rotationally Oscillating Solid Cylinder, Proceedings of the International Conference on Industrial Mechanical Engineering and Operations Management, Paper no – 420, Dhaka, Bangladesh, December 26-27, 2021.</p>
+                    <p><strong>A.N.M.F. Islam, R. Islam, M.R. Hossain and S. Saha</strong> (2021). Conjugate Mixed Convection in a Differentially Heated Square Cavity with a Rotationally Oscillating Solid Cylinder. <em>Proceedings of the International Conference on Industrial Mechanical Engineering and Operations Management</em>, Paper no. 420, Dhaka, Bangladesh, December 26-27, 2021.</p>
                 </div>
             </section>
 
-            <section id="test">
+            <section id="projects">
+                <h2>Research Projects</h2>
+                
+                <div class="project-item">
+                    <div class="item-header">
+                        <h3>Curved Plate and Frame Heat Exchanger</h3>
+                        <span class="date">January 2022</span>
+                    </div>
+                    <div class="details">
+                        <p>This project was an attempt to improve the efficiency of the plate heat exchanger using curved plates instead of traditional flat plates. SOLIDWORKS, HTRI Xchanger and ANSYS FLUENT were used extensively for design and simulation purposes.</p>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="item-header">
+                        <h3>Lungs Performance Analysis Using Spirometry</h3>
+                        <span class="date">July 2021</span>
+                    </div>
+                    <div class="details">
+                        <p>In the post-Covid situation, this project was an attempt to design an efficient yet affordable device that can predict the lung condition of the user. This was achieved by measuring the forced vital capacity of the user with an Arduino and a machine learning model trained with MATLAB.</p>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="item-header">
+                        <h3>Mars Rover - Team Interplaneter (BUET)</h3>
+                        <span class="date">2021</span>
+                    </div>
+                    <div class="details">
+                        <p>Designing and manufacturing of the wheel, chassis and suspension system for Anweshan 3 mars rover using SOLIDWORKS with a view to participate in University Rover Challenge and European Rover Challenge competitions.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2>Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <h3>Research Assistant</h3>
+                            <p class="institution">North South University</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <h3>Intern</h3>
+                            <p class="institution">Gozayaan Limited</p>
+                        </div>
+                        <span class="date">October 2022 - November 2022</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2>Technical Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h4>Simulation & Analysis</h4>
+                        <ul class="skill-list">
+                            <li>COMSOL Multiphysics</li>
+                            <li>ANSYS FLUENT</li>
+                            <li>MATLAB</li>
+                            <li>Simulink</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>CAD & Design</h4>
+                        <ul class="skill-list">
+                            <li>SolidWorks</li>
+                            <li>AutoCAD</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Programming</h4>
+                        <ul class="skill-list">
+                            <li>Python</li>
+                            <li>C++ & C</li>
+                            <li>MATLAB</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Other Tools</h4>
+                        <ul class="skill-list">
+                            <li>MS Office Suite</li>
+                            <li>Proteus</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="test-scores">
                 <h2>Standardized Test Results</h2>
                 <div class="education-item">
-                    <h3>IELTS</h3>
-                    <div style="margin-top: 10px;">
-                        <span class="test-score">Total: 8.5</span>
+                    <h3>IELTS Academic</h3>
+                    <div class="test-results">
+                        <span class="test-score">Overall: 8.5</span>
                         <span class="test-score">Reading: 8.5</span>
                         <span class="test-score">Listening: 9.0</span>
                         <span class="test-score">Speaking: 8.0</span>
@@ -338,23 +614,31 @@
             </section>
 
             <section id="achievements">
-                <h2>Extra-Curricular Activities</h2>
+                <h2>Achievements & Extra-Curricular Activities</h2>
                 <ul class="achievements-list">
-                    <li>Hult Prize - SUST Champion. Regional Finalist (Mumbai, India)</li>
-                    <li>Innovation Award in the International Planetary Aerial Systems Challenge (Team Interplaneter, 2021)</li>
-                    <li>Finalist in University Rover Challenge (Team Interplaneter, 2021)</li>
-                    <li>4th position in the qualification round of European Rover Challenge (Team Interplaneter, 2021)</li>
-                    <li>6th position in qualification round of European Rover Challenge (Team Interplaneter, 2021)</li>
+                    <li><strong>Hult Prize - SUST Champion.</strong> Regional Finalist (Mumbai, India)</li>
+                    <li><strong>Innovation Award</strong> in the International Planetary Aerial Systems Challenge (Team Interplaneter, 2021)</li>
+                    <li><strong>Finalist</strong> in University Rover Challenge (Team Interplaneter, 2021)</li>
+                    <li><strong>4th Position</strong> in the qualification round of European Rover Challenge (Team Interplaneter, 2021)</li>
+                    <li><strong>6th Position</strong> in qualification round of European Rover Challenge (Team Interplaneter, 2021)</li>
                 </ul>
             </section>
 
             <section id="courses">
-                <h2>Special Courses</h2>
+                <h2>Professional Development</h2>
                 <div class="education-item">
-                    <p><strong>Machine Learning by Stanford University</strong> offered through Coursera <span class="date">2020</span></p>
+                    <div class="item-header">
+                        <h3>Machine Learning</h3>
+                        <span class="date">2020</span>
+                    </div>
+                    <p class="institution">Stanford University via Coursera</p>
                 </div>
                 <div class="education-item">
-                    <p><strong>Simulink Onramp</strong> online course offered by Mathworks <span class="date">2022</span></p>
+                    <div class="item-header">
+                        <h3>Simulink Onramp</h3>
+                        <span class="date">2022</span>
+                    </div>
+                    <p class="institution">MathWorks Online Training</p>
                 </div>
             </section>
 
@@ -363,19 +647,25 @@
                 <div class="references-grid">
                     <div class="reference-card">
                         <h4>Dr. Sumon Saha</h4>
-                        <p><strong>Professor, Department of ME, BUET</strong></p>
+                        <p class="title">Professor, Department of Mechanical Engineering</p>
+                        <p class="title">Bangladesh University of Engineering and Technology (BUET)</p>
                         <p>✉️ sumonsaha@me.buet.ac.bd</p>
                         <p>📞 +8801926197002</p>
                     </div>
                     <div class="reference-card">
                         <h4>Dr. Md. Ashraful Islam</h4>
-                        <p><strong>Professor, Department of ME, BUET</strong></p>
+                        <p class="title">Professor, Department of Mechanical Engineering</p>
+                        <p class="title">Bangladesh University of Engineering and Technology (BUET)</p>
                         <p>✉️ aislam@me.buet.ac.bd</p>
                         <p>📞 +8801401042828</p>
                     </div>
                 </div>
             </section>
         </div>
+
+        <footer>
+            <p>&copy; 2024 Neyaz Ahmed. All rights reserved.</p>
+        </footer>
     </div>
 </body>
 </html>
