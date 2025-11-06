@@ -103,6 +103,33 @@
             opacity: 1;
         }
 
+        .cv-button-container {
+            margin-top: 30px;
+        }
+
+        .cv-download-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+            font-size: 1.05em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+        }
+
+        .cv-download-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
         nav {
             background: #002147;
             padding: 0;
@@ -633,7 +660,7 @@
             nav {
                 display: none;
             }
-            
+
             .education-item, .experience-item, .project-item {
                 page-break-inside: avoid;
             }
@@ -651,7 +678,7 @@
 </head>
 <body>
     <div class="container">
-    <header>
+        <header>
             <div class="header-content">
                 <h1>Neyaz Ahmed</h1>
                 <p class="subtitle">Computational Scientist | Applied Mathematics & Mechanical Engineering<br>Research Focus: Computational Fluid Dynamics, Heat Transfer & Machine Learning Applications</p>
@@ -661,13 +688,21 @@
                     <span>🌐 <a href="https://neyaz-ahmed.github.io" target="_blank">neyaz-ahmed.github.io</a></span>
                     <span>💼 <a href="https://linkedin.com/in/neyaz-ahmed" target="_blank">LinkedIn</a></span>
                     <span>💻 <a href="https://github.com/neyaz-ahmed" target="_blank">GitHub</a></span>
+                    <span>📄 <a href="https://drive.google.com/file/d/1IjpvMZvzkUTU4b-KeNB_gMddblohRigW/view?usp=sharing" target="_blank">View CV</a></span>
+                </div>
+                <div class="cv-button-container">
+                    <a href="https://drive.google.com/file/d/1IjpvMZvzkUTU4b-KeNB_gMddblohRigW/view?usp=sharing" target="_blank" class="cv-download-btn">
+                        📄 Download Full CV
+                    </a>
                 </div>
             </div>
         </header>
+
         <div class="content">
+
             <section id="education">
                 <h2>Academic Background</h2>
-                
+
                 <div class="education-item">
                     <div class="item-header">
                         <div>
@@ -734,7 +769,7 @@
 
             <section id="experience">
                 <h2>Professional Experience & Involvement</h2>
-                
+
                 <div class="experience-item">
                     <div class="item-header">
                         <div>
@@ -750,7 +785,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="experience-item">
                     <div class="item-header">
                         <div>
@@ -778,7 +813,7 @@
                         <p>Assisted in graduate-level courses, lab sessions, and problem-solving tutorials.</p>
                     </div>
                 </div>
-                
+
                  <div class="experience-item">
                     <div class="item-header">
                         <div>
@@ -795,7 +830,7 @@
 
             <section id="projects">
                 <h2>Selected Research Projects</h2>
-                
+
                 <div class="project-item">
                     <div class="item-header">
                         <h3>Band Gap and Band Alignment Prediction of Semiconductors using Machine Learning</h3>
@@ -806,7 +841,7 @@
                         <p>GitHub Repository: <a href="https://github.com/BandGapAlign" target="_blank">BandGapAlign</a></p>
                     </div>
                 </div>
-                
+
                 <div class="project-item">
                     <div class="item-header">
                         <h3>Neural ODE-PDE Hybrid Framework for Traffic Flow Dynamics</h3>
@@ -817,7 +852,7 @@
                         <p>GitHub Repository: <a href="https://github.com/NeuralTrafficFlow" target="_blank">NeuralTrafficFlow</a></p>
                     </div>
                 </div>
-                
+
                 <div class="project-item">
                     <div class="item-header">
                         <h3>Neural Differential Models</h3>
@@ -828,7 +863,7 @@
                         <p>GitHub Repository: <a href="https://github.com/neural-differential-models" target="_blank">neural-differential-models</a></p>
                     </div>
                 </div>
-                
+
                 <div class="project-item">
                     <div class="item-header">
                         <h3>Design and Development Project</h3>
@@ -931,7 +966,7 @@
             </section>
         </div>
 
-    <footer>
+        <footer>
             <p>&copy; 2024 Neyaz Ahmed. All rights reserved. | Professional Memberships: Society of Petroleum Engineers (SPE), Ex Cadet Forum</p>
         </footer>
     </div>
