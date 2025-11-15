@@ -1,23 +1,667 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ... (head section remains unchanged) ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neyaz Ahmed - Academic Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', 'Georgia', 'Times New Roman', serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: #ffffff;
+            box-shadow: 0 10px 60px rgba(0, 0, 0, 0.12);
+            border-radius: 2px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #002147 0%, #003d82 100%);
+            color: white;
+            padding: 80px 60px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid #004ba8;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.03) 49%, rgba(255,255,255,0.03) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.03) 49%, rgba(255,255,255,0.03) 51%, transparent 52%);
+            background-size: 3px 3px;
+        }
+
+        header .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', 'Georgia', serif;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            font-weight: 300;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+            line-height: 1.5;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+            font-size: 1em;
+            opacity: 0.92;
+            margin-top: 25px;
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.3s;
+            padding-bottom: 2px;
+        }
+
+        .contact-info a:hover {
+            border-bottom-color: white;
+            opacity: 1;
+        }
+
+        nav {
+            background: #002147;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            padding: 15px 20px;
+            cursor: pointer;
+            width: 100%;
+            text-align: right;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 20px 28px;
+            color: white;
+            text-decoration: none;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+            font-size: 0.95em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #63b3ed;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::before {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 70px 60px;
+        }
+
+        section {
+            margin-bottom: 70px;
+        }
+
+        h2 {
+            color: #002147;
+            font-size: 2.2em;
+            font-weight: 400;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #002147;
+            font-family: 'Playfair Display', 'Georgia', serif;
+            letter-spacing: 0.5px;
+            position: relative;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: #63b3ed;
+            animation: expandWidth 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes expandWidth {
+            from {
+                width: 0;
+            }
+            to {
+                width: 80px;
+            }
+        }
+
+        .education-item, .experience-item, .project-item, .publication-item {
+            margin-bottom: 40px;
+            padding: 35px;
+            background: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%);
+            border-left: 5px solid #002147;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .education-item:hover, .experience-item:hover, .project-item:hover, .publication-item:hover {
+            transform: translateX(8px) translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 33, 71, 0.15);
+            border-left-color: #63b3ed;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .education-item h3, .experience-item h3, .project-item h3 {
+            color: #002147;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .education-item:hover h3, .experience-item:hover h3, .project-item:hover h3 {
+            color: #003d82;
+        }
+
+        .institution {
+            font-size: 1.1em;
+            color: #002147;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+        }
+
+        .date {
+            color: #718096;
+            font-style: italic;
+            font-size: 0.95em;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+            font-weight: 500;
+        }
+
+        .details {
+            margin-top: 15px;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+            line-height: 1.8;
+            font-size: 1em;
+        }
+
+        .details p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .details ul {
+            margin-left: 20px;
+            margin-top: 12px;
+        }
+
+        .details li {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .details strong {
+            color: #002147;
+            font-weight: 600;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%);
+            padding: 30px;
+            border-radius: 4px;
+            border-top: 4px solid #002147;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 33, 71, 0.15);
+            border-top-color: #63b3ed;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+        }
+
+        .skill-category h4 {
+            color: #002147;
+            margin-bottom: 18px;
+            font-size: 1.15em;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .skill-category:hover h4 {
+            color: #003d82;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 10px 0;
+            color: #4a5568;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+            position: relative;
+            padding-left: 25px;
+            font-size: 0.98em;
+        }
+
+        .skill-list li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: #002147;
+            font-size: 0.8em;
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .interest-card {
+            background: linear-gradient(135deg, #002147 0%, #003d82 100%);
+            color: white;
+            padding: 35px 25px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1.05em;
+            font-weight: 600;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+            letter-spacing: 0.3px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 33, 71, 0.3);
+            line-height: 1.5;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interest-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .interest-card:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .interest-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 33, 71, 0.5);
+            background: linear-gradient(135deg, #003d82 0%, #0059b3 100%);
+        }
+
+        .achievements-list {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .achievements-list li {
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%);
+            border-left: 5px solid #002147;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .achievements-list li:hover {
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 33, 71, 0.15);
+            border-left-color: #63b3ed;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+        }
+
+        .test-results {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .test-score {
+            background: linear-gradient(135deg, #002147 0%, #003d82 100%);
+            color: white;
+            padding: 18px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+            box-shadow: 0 4px 15px rgba(0, 33, 71, 0.25);
+            transition: all 0.3s ease;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .test-score:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 33, 71, 0.4);
+        }
+
+        .scholarship-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #002147 0%, #003d82 100%);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            margin: 8px 8px 8px 0;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 33, 71, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .scholarship-badge:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 33, 71, 0.35);
+        }
+
+        footer {
+            background: linear-gradient(135deg, #002147 0%, #003d82 100%);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            font-family: 'Lato', 'Helvetica', sans-serif;
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        .github-link {
+            color: #63b3ed;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(99, 179, 237, 0.4);
+            transition: all 0.3s;
+        }
+
+        .github-link:hover {
+            border-bottom-color: #63b3ed;
+        }
+
+        @media (max-width: 968px) {
+            header {
+                padding: 60px 40px;
+            }
+
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+            }
+
+            .content {
+                padding: 50px 40px;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 0;
+                border-radius: 0;
+            }
+
+            header {
+                padding: 50px 30px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .subtitle {
+                font-size: 1em;
+            }
+
+            .content {
+                padding: 40px 30px;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+            }
+
+            nav ul.active {
+                max-height: 500px;
+            }
+
+            nav ul li a {
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 15px 20px;
+            }
+
+            nav ul li a:hover {
+                transform: none;
+            }
+
+            .item-header {
+                flex-direction: column;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .interests-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-item, .experience-item, .project-item, .publication-item {
+                padding: 25px;
+            }
+
+            .education-item:hover, .experience-item:hover, .project-item:hover, .publication-item:hover {
+                transform: translateX(5px);
+            }
+
+            .skill-category:hover {
+                transform: translateY(-3px);
+            }
+
+            .interest-card:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+                margin: 0;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .education-item, .experience-item, .project-item {
+                page-break-inside: avoid;
+            }
+
+            header {
+                padding: 40px 30px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@300;400;600&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
             <div class="header-content">
                 <h1>Neyaz Ahmed</h1>
-                <p class="subtitle">Computational Scientist | Applied Mathematics & Mechanical Engineering<br>Research Focus: Computational Fluid Dynamics, Heat Transfer & Machine Learning Applications</p>
+                <p class="subtitle">Computational Scientist | Applied Mathematics & Petroleum Engineering<br>Research Focus: Computational Fluid Dynamics, Heat Transfer & Machine Learning Applications</p>
                 <div class="contact-info">
-                    <!-- Mobile number removed -->
                     <span>✉️ <a href="mailto:Niazahmed1864@gmail.com">Niazahmed1864@gmail.com</a></span>
                     <span>🌐 <a href="https://neyaz-ahmed.github.io" target="_blank">neyaz-ahmed.github.io</a></span>
                     <span>💼 <a href="https://linkedin.com/in/neyaz-ahmed" target="_blank">LinkedIn</a></span>
                     <span>💻 <a href="https://github.com/neyaz-ahmed" target="_blank">GitHub</a></span>
                     <span>📄 <a href="https://drive.google.com/file/d/1IjpvMZvzkUTU4b-KeNB_gMddblohRigW/view?usp=sharing" target="_blank">View CV</a></span>
                 </div>
-                <!-- "Download Full CV" button removed, as requested -->
             </div>
         </header>
 
@@ -25,6 +669,7 @@
 
             <section id="education">
                 <h2>Academic Background</h2>
+
                 <div class="education-item">
                     <div class="item-header">
                         <div>
@@ -40,28 +685,13 @@
                     </div>
                 </div>
 
-                <!-- BSc in Petroleum Engineering Section -->
                 <div class="education-item">
                     <div class="item-header">
                         <div>
                             <h3>Bachelor of Science in Petroleum Engineering</h3>
-                            <p class="institution">[Institution or University Name]</p>
-                        </div>
-                        <span class="date">2018 - 2022</span>
-                    </div>
-                    <div class="details">
-                        <p><strong>Key Focus Areas:</strong> Please add details about your thesis, coursework, or experiences here as needed.</p>
-                    </div>
-                </div>
-                <!-- End of BSc Petroleum Engineering Section -->
-
-                <div class="education-item">
-                    <div class="item-header">
-                        <div>
-                            <h3>Bachelor of Science in Mechanical Engineering</h3>
                             <p class="institution">Shahjalal University of Science and Technology (SUST), Sylhet, Bangladesh</p>
                         </div>
-                        <span class="date">2019 - 2023</span>
+                        <span class="date">2018 - 2022</span>
                     </div>
                     <div class="details">
                         <p><strong>Cumulative GPA:</strong> 2.86/4.00</p>
@@ -70,10 +700,153 @@
                         <p><strong>Research Methodology:</strong> Conducted systematic risk assessment employing statistical analysis, field surveys, and safety protocol evaluation to identify critical vulnerabilities in residential gas distribution systems.</p>
                     </div>
                 </div>
-                <!-- ... (rest remains unchanged) ... -->
+
+                <div class="education-item">
+                    <div class="item-header">
+                        <div>
+                            <h3>Higher Secondary School Certificate (HSC)</h3>
+                            <p class="institution">Sylhet Cadet College, Sylhet, Bangladesh</p>
+                        </div>
+                        <span class="date">2017</span>
+                    </div>
+                    <div class="details">
+                        <p><strong>Grade Point Average:</strong> 5.00/5.00 (Perfect Score)</p>
+                        <p><strong>Academic Distinction:</strong> Achieved exemplary performance across all subjects with perfect GPA, demonstrating exceptional analytical and problem-solving capabilities.</p>
+                        <div style="margin-top: 15px;">
+                            <span class="scholarship-badge">🏆 National Board Scholarship - HSC (2017)</span>
+                            <span class="scholarship-badge">🏆 National Board Scholarship - SSC (2015)</span>
+                        </div>
+                    </div>
+                </div>
             </section>
 
-            <!-- ... (rest of the document unchanged) ... -->
+            <section id="research">
+                <h2>Research Interests</h2>
+                <div class="interests-grid">
+                    <div class="interest-card">Computational Fluid Dynamics</div>
+                    <div class="interest-card">Heat Transfer</div>
+                    <div class="interest-card">Machine Learning Applications in Engineering</div>
+                    <div class="interest-card">Fluid Mechanics</div>
+                    <div class="interest-card">Numerical Methods</div>
+                    <div class="interest-card">Multiphysics Modeling</div>
+                    <div class="interest-card">Control Engineering</div>
+                    <div class="interest-card">Applied Mathematics in Physical Sciences</div>
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2>Professional Experience & Involvement</h2>
+
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <h3>Research Assistant</h3>
+                            <p class="institution">Department of Mathematics & Physics, North South University</p>
+                        </div>
+                    </div>
+                    <div class="details">
+                        <ul>
+                            <li>Conducting numerical investigations on supercritical fluid heat transfer in microtube heat exchangers.</li>
+                            <li>Developing CFD models using <strong>ANSYS FLUENT</strong> and <strong>COMSOL Multiphysics</strong>.</li>
+                            <li>Analyzing heat transfer characteristics at varying Reynolds numbers.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <h3>Engineering Intern</h3>
+                            <p class="institution">Baset Prokoushol Limited, Dhaka, Bangladesh</p>
+                        </div>
+                    </div>
+                    <div class="details">
+                        <ul>
+                            <li>Participating in <strong>soil testing</strong> (e.g., compaction, moisture content) and observation of excavation and backfilling operations for utilities and foundations.</li>
+                            <li>Worked on setting control lines, grades, and elevations using <strong>Total Station equipment</strong> to guide construction crews.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <h3>Teaching Assistant</h3>
+                            <p class="institution">Applied Mathematics, North South University</p>
+                        </div>
+                        <span class="date">2024 - Present</span>
+                    </div>
+                    <div class="details">
+                        <p>Assisted in graduate-level courses, lab sessions, and problem-solving tutorials.</p>
+                    </div>
+                </div>
+
+                 <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <h3>One-on-One Mentoring in Mathematics and Programming</h3>
+                            <p class="institution">Personalized Guidance</p>
+                        </div>
+                        <span class="date">2021 - Present</span>
+                    </div>
+                    <div class="details">
+                        <p>Provided personalized guidance and project support for students.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2>Selected Research Projects</h2>
+
+                <div class="project-item">
+                    <div class="item-header">
+                        <h3>Design and Development Project</h3>
+                        <span class="date">General Project Example</span>
+                    </div>
+                    <div class="details">
+                        <ul>
+                            <li>Collaborated on the <strong>end-to-end design and development</strong> of a multidisciplinary engineering project.</li>
+                            <li>Applied <strong>modeling, simulation, and analytical tools</strong> to support system optimization.</li>
+                            <li>Contributed to design reviews and performance evaluations in team-based environments.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2>Technical Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h4>CFD/FEA Software</h4>
+                        <ul class="skill-list">
+                            <li><strong>ANSYS FLUENT</strong></li>
+                            <li><strong>COMSOL Multiphysics</strong></li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Programming</h4>
+                        <ul class="skill-list">
+                            <li><strong>Python</strong></li>
+                            <li><strong>MATLAB</strong></li>
+                            <li>C</li>
+                            <li>High Performance Computing</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Simulation Tools</h4>
+                        <ul class="skill-list">
+                            <li>MATLAB Simulink</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Productivity & Other</h4>
+                        <ul class="skill-list">
+                            <li>Microsoft Office Suite</li>
+                            <li>TEX</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
             <section id="test-scores">
                 <h2>Standardized Test Results</h2>
@@ -90,20 +863,82 @@
                 <div class="education-item">
                     <h3>GRE</h3>
                     <div class="test-results">
-                        <span class="test-score">Unofficial score: 329</span>
+                        <span class="test-score">Unofficial Score: 329</span>
                         <span class="test-score">Quantitative: 170</span>
                         <span class="test-score">Verbal: 159</span>
                     </div>
                 </div>
             </section>
 
-            <!-- ... (rest of the document unchanged) ... -->
+            <section id="achievements">
+                <h2>Honors & Achievements</h2>
+                <ul class="achievements-list">
+                    <li><strong>Hult Prize SUST Champion -</strong> Advanced to Regional Finals in Mumbai, India</li>
+                    <li><strong>Champion National Mathematics Olympiad -</strong> (2013)</li>
+                    <li><strong>Bronze medal Duke of Edinburgh award program -</strong> (2017)</li>
+                </ul>
+            </section>
 
+            <section id="courses">
+                <h2>Autodidactic Courses</h2>
+                <div class="education-item">
+                    <div class="item-header">
+                        <h3>Machine Learning (Online certification)</h3>
+                    </div>
+                    <p class="institution">Stanford University via Coursera</p>
+                </div>
+                <div class="education-item">
+                    <div class="item-header">
+                        <h3>Simulink Onramp (Online certification)</h3>
+                    </div>
+                    <p class="institution">MathWorks</p>
+                </div>
+                <div class="education-item">
+                    <div class="item-header">
+                        <h3>CS50: Introduction to Computer Science (Online certification)</h3>
+                    </div>
+                    <p class="institution">Harvard University</p>
+                </div>
+            </section>
         </div>
+
         <footer>
             <p>&copy; 2024 Neyaz Ahmed. All rights reserved. | Professional Memberships: Society of Petroleum Engineers (SPE), Ex Cadet Forum</p>
         </footer>
     </div>
 </body>
 </html>
+                        <h3>Band Gap and Band Alignment Prediction of Semiconductors using Machine Learning</h3>
+                        <span class="date">Ongoing Project</span>
+                    </div>
+                    <div class="details">
+                        <p>Ongoing project leveraging <strong>machine learning</strong> to predict band gap values and band alignment classifications for semiconductors, aiding material discovery in electronic and optoelectronic applications.</p>
+                        <p>GitHub Repository: <a href="https://github.com/BandGapAlign" target="_blank">BandGapAlign</a></p>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="item-header">
+                        <h3>Neural ODE-PDE Hybrid Framework for Traffic Flow Dynamics</h3>
+                        <span class="date">Research Framework</span>
+                    </div>
+                    <div class="details">
+                        <p>TrajODE is a deep learning model for spatial trajectories that uses Neural ODEs and latent variables to capture continuous-time movement and handle noisy GPS data. Its spatio-temporal gating mechanism improves classification accuracy by 14–21% over state-of-the-art RNNs on real-world datasets. TrajODE provides robust, natural modeling of real-world mobility patterns for applications like transport mode detection.</p>
+                        <p>GitHub Repository: <a href="https://github.com/NeuralTrafficFlow" target="_blank">NeuralTrafficFlow</a></p>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="item-header">
+                        <h3>Neural Differential Models</h3>
+                        <span class="date">Research Framework</span>
+                    </div>
+                    <div class="details">
+                        <p>A research framework unifying <strong>deep learning with differential equations</strong> (Neural ODEs, Neural Operators, Social ODEs) for modeling continuous dynamics, trajectories, and multi-agent forecasting.</p>
+                        <p>GitHub Repository: <a href="https://github.com/neural-differential-models" target="_blank">neural-differential-models</a></p>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="item-header">
 
