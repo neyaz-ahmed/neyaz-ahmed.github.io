@@ -3,17 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scientific Ledger v2.0</title>
+  <title>Neyaz Ahmed // Academic Portfolio</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Fira+Code:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Fira+Code:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
     :root {
-      --paper: #fdfdfc;
-      --ink: #1a1a1a;
-      --ink-dim: #555;
-      --accent: #225588; /* Engineering Blue */
-      --grid: rgba(0, 0, 0, 0.04);
-      --margin-width: 240px;
+      /* Dark Mode Palette */
+      --paper: #121416;
+      --surface: #1a1d21;
+      --surface-hover: #22262b;
+      --ink: #e2e8f0;
+      --ink-dim: #94a3b8;
+      --accent: #c8a84b;
+      --accent-dim: rgba(200, 168, 75, 0.15);
+      --border: #2d3748;
+      --grid: rgba(255, 255, 255, 0.03);
+      --margin-width: 300px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,8 +27,9 @@
       background: var(--paper);
       color: var(--ink);
       font-family: 'Crimson Pro', serif;
-      line-height: 1.6;
+      line-height: 1.7;
       font-size: 18px;
+      overflow-x: hidden;
     }
 
     /* Engineering Grid Background */
@@ -32,116 +38,248 @@
       background-image: 
         linear-gradient(var(--grid) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-      background-size: 20px 20px;
+      background-size: 30px 30px;
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 4rem 2rem;
+      padding: 3rem 2rem;
       display: grid;
       grid-template-columns: 1fr var(--margin-width);
       gap: 4rem;
     }
 
+    /* Navigation / Header */
     header {
       grid-column: 1 / -1;
-      border-bottom: 2px solid var(--ink);
-      padding-bottom: 1rem;
-      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4rem;
     }
 
     .journal-meta {
       font-family: 'Fira Code', monospace;
-      font-size: 12px;
+      font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 2px;
       color: var(--accent);
     }
 
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--ink-dim);
+      text-decoration: none;
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      line-height: 1;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.1;
       margin: 0.5rem 0;
+      color: #ffffff;
     }
 
-    /* Sidebar Notes (Tufte Style) */
-    .sidenote {
-      grid-column: 2;
-      font-size: 14px;
-      color: var(--ink-dim);
-      border-left: 1px solid #ddd;
-      padding-left: 1rem;
-      font-style: italic;
-      margin-bottom: 2rem;
-    }
+    h1 em { color: var(--accent); font-style: italic; }
 
+    /* Main Content Area */
     .main-content { grid-column: 1; }
 
-    /* Math Block Styling */
-    .equation-block {
-      background: #f8f9fa;
-      border: 1px solid #e1e4e8;
-      padding: 2rem;
-      margin: 2rem 0;
-      font-family: serif;
+    .abstract {
       font-size: 1.2rem;
-      text-align: center;
-      position: relative;
-      overflow-x: auto;
-    }
-
-    .eq-label {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: 'Fira Code', monospace;
-      font-size: 12px;
       color: var(--ink-dim);
+      margin-bottom: 3rem;
+      max-width: 90%;
     }
-
-    .code-snippet {
-      font-family: 'Fira Code', monospace;
-      background: #2d2d2d;
-      color: #ccc;
-      padding: 1rem;
-      border-radius: 4px;
-      font-size: 14px;
-      margin: 1rem 0;
-    }
-
-    .highlight { color: #f0c674; }
 
     h2 {
       font-family: 'Playfair Display', serif;
       font-size: 1.8rem;
-      margin: 2.5rem 0 1rem;
-      border-bottom: 1px solid #eee;
+      font-weight: 400;
+      margin: 3.5rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      color: #ffffff;
     }
 
-    .abstract {
-      font-weight: 600;
+    .section-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: -3rem;
+    }
+
+    /* Math Blocks & Theorems */
+    .equation-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      margin: 2rem 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 1.1rem;
+      text-align: center;
+      position: relative;
+      overflow-x: auto;
+      border-radius: 4px;
+    }
+
+    .eq-label {
+      position: absolute;
+      right: 1.5rem;
+      top: 1rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
       color: var(--ink-dim);
-      margin-bottom: 2rem;
+    }
+
+    .theorem-box {
+      border-left: 2px solid var(--accent);
+      padding: 1.5rem 2rem;
+      margin: 2.5rem 0;
+      background: var(--accent-dim);
+      font-style: italic;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .theorem-box strong {
+      display: block;
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      font-style: normal;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Subjects Grid */
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .subject-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 4px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .subject-card:hover {
+      background: var(--surface-hover);
+      border-color: var(--accent);
+    }
+
+    .subject-card .symbol {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .subject-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+
+    .subject-card p { font-size: 0.95rem; color: var(--ink-dim); line-height: 1.5; }
+
+    /* Formula Row */
+    .formula-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .formula-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .formula-name { font-family: 'Fira Code', monospace; font-size: 13px; color: var(--ink-dim); flex: 1;}
+    .formula-math { font-family: 'Fira Code', monospace; font-size: 14px; color: #fff; text-align: right; flex: 2; padding-left: 1rem;}
+
+    /* Aside/Sidenotes */
+    aside { grid-column: 2; margin-top: 2rem; }
+
+    .sidenote {
+      font-size: 14px;
+      color: var(--ink-dim);
+      border-left: 1px solid var(--border);
+      padding-left: 1rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .sidenote strong {
+      display: block;
+      color: var(--accent);
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      font-weight: normal;
+    }
+
+    .sidenote ul {
+      padding-left: 1rem;
+      margin-top: 0.5rem;
     }
 
     footer {
       grid-column: 1 / -1;
-      margin-top: 5rem;
+      margin-top: 4rem;
       padding-top: 2rem;
-      border-top: 1px solid #eee;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
       font-family: 'Fira Code', monospace;
       font-size: 12px;
       color: var(--ink-dim);
-      text-align: center;
     }
 
     @media (max-width: 900px) {
-      .container { grid-template-columns: 1fr; }
-      .sidenote { grid-column: 1; border-left: 3px solid var(--accent); background: #f0f4f8; padding: 1rem; }
+      .container { grid-template-columns: 1fr; gap: 2rem; }
+      aside { grid-column: 1; margin-top: 0; }
+      .sidenote { border-left: 2px solid var(--accent); padding: 1rem; background: var(--surface); border-radius: 0 4px 4px 0; }
+      .section-label { margin-bottom: 0; margin-top: 3rem; }
+      h2 { margin-top: 0.5rem; }
+      .formula-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .formula-math { text-align: left; padding-left: 0; }
     }
   </style>
 </head>
@@ -150,54 +288,127 @@
 
   <div class="container">
     <header>
-      <div class="journal-meta">Research Journal // Vol. 2026.04 // Dhaka, BD</div>
-      <h1>Computational Dynamics</h1>
+      <nav class="top-nav">
+        <div class="journal-meta">Neyaz Ahmed // Researcher Profile</div>
+        <ul class="nav-links">
+          <li><a href="mailto:Niazahmed1864@gmail.com">Contact</a></li>
+          <li><a href="https://neyaz-ahmed.github.io" target="_blank">Website</a></li>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+      </nav>
+      <h1>Applied Math &<br><em>Computational Science</em></h1>
     </header>
 
     <div class="main-content">
       <p class="abstract">
-        An exploration into non-linear partial differential equations and the numerical stability of porous media flows under the Forchheimer regime.
+        Graduate researcher engaged in Computational Fluid Dynamics, Heat Transfer, and Machine Learning applications in Engineering[cite: 31]. My fundamental academic aim is to pioneer the field of quantum computing in Bangladesh, utilizing rigorous data-driven simulations and multiphysics modeling.
       </p>
 
-      <h2>§ 1. The Brinkman-Forchheimer Model</h2>
+      <span class="section-label">§ 1. CURRENT RESEARCH</span>
+      <h2>Thesis & Investigation</h2>
+      
       <p>
-        In porous media simulations, the momentum equation often incorporates the Forchheimer term to account for high-velocity inertial effects. However, numerical singularities arise when the velocity field $u$ approaches zero.
+        Currently pursuing a Master of Science in Applied Mathematics and Computational Science at North South University, maintaining a GPA of 3.51[cite: 6, 7].
+      </p>
+
+      <div class="theorem-box">
+        <strong>Ongoing Thesis Work</strong>
+        Numerical Investigation of Mixed convective heat and solutal transfer within a trapezoidal wavy cavity filled with uniform porous medium: Non-uniform wall temperature/concentration[cite: 9]. Advised by Dr. Mamun Mollah and supervised by Dr. Preetom Nag[cite: 8, 10].
+      </div>
+
+      <p>
+        The governing physics in such porous regimes typically rely on modifications to the Navier-Stokes formulations, accounting for both Darcy drag and Forchheimer inertial effects in high-velocity fields.
       </p>
 
       <div class="equation-block">
-        <span class="eq-label">(1.1)</span>
-        ∇p = - (μ/k)<strong>u</strong> - (βρ/|<strong>u</strong>|)<strong>u</strong><sup>2</sup>
+        <span class="eq-label">Darcy-Brinkman-Forchheimer</span>
+        <span style="color: var(--ink-dim);">(ρ/ε) [∂u/∂t + (1/ε)(u · ∇)u] = −∇p + (μ_eff)∇²u - (μ/K)u - (C_F ρ / √K)|u|u</span><br>
       </div>
 
-      <div class="sidenote">
-        Note: The term $(u^2 + v^2)^{-0.5}$ in the Jacobian calculation is the primary source of the "Negative power of zero" error. Regularization via a small epsilon constant is recommended.
+      <span class="section-label">§ 2. ACADEMIC ENDEAVORS</span>
+      <h2>Projects & Publications</h2>
+
+      <div class="formula-row">
+        <div class="formula-item">
+          <span class="formula-name">Geothermal Exchanger</span>
+          <span class="formula-math">Numerical Investigation of Double-Tube Vertical Geothermal Exchanger in Pile Foundations (Submitted-under review) [cite: 21]</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Building Energy ML</span>
+          <span class="formula-math">Comprehensive Statistical Benchmarking of Machine Learning Models for Building Energy Efficiency Prediction [cite: 24]</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Medical Diagnosis ML</span>
+          <span class="formula-math">A Comprehensive Comparative Analysis of Machine Learning Models for Breast Cancer Diagnosis [cite: 25]</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Fluid Flow Finite Volume</span>
+          <span class="formula-math">Numerical Investigation of Fluid Flow in a Square Cavity: Finite Volume Discretization, proper orthogonal decomposition [cite: 28]</span>
+        </div>
       </div>
 
-      <h2>§ 2. Implementation Logic</h2>
-      <p>The symbolic derivative of the drag force with respect to the velocity component $v$ is defined as:</p>
-      
-      <div class="code-snippet">
-        <span style="color: #999;">// Brinkman-Forchheimer Y-Component</span><br>
-        -((C_F * sqrt(u^2 + v^2)) + (v * (C_F * (v^2 * (0.5 * (u^2 + v^2)^-0.5))))) * (1/sqrt(Da))
+      <span class="section-label">§ 3. ARSENAL</span>
+      <h2>Technical Frameworks</h2>
+
+      <div class="subjects-grid">
+        <div class="subject-card">
+          <span class="symbol">∇</span>
+          <h3>CFD & Multiphysics</h3>
+          <p>Proficient in utilizing ANSYS FLUENT and COMSOL Multiphysics for complex transport and fluid simulations[cite: 33].</p>
+        </div>
+        <div class="subject-card">
+          <span class="symbol">∑</span>
+          <h3>Scientific Computing</h3>
+          <p>Development and numerical methods via Python (NumPy, SciPy), MATLAB, and C[cite: 33].</p>
+        </div>
+        <div class="subject-card">
+          <span class="symbol">∀</span>
+          <h3>Machine Learning</h3>
+          <p>Application of Neural ODEs, Physics-Informed Neural Networks (PINNs), and Deep Learning architectures for physical systems[cite: 33].</p>
+        </div>
+        <div class="subject-card">
+          <span class="symbol">∫</span>
+          <h3>Data-Driven Discovery</h3>
+          <p>Implementation of hybrid physics-ML modeling and data-driven equation discovery (SINDY)[cite: 33].</p>
+        </div>
       </div>
 
-      <h2>§ 3. Convergence Convergence</h2>
-      <p>Using a Stationary Solver, we observe the following behavior in the residual plot during the initial iterations...</p>
     </div>
 
     <aside>
       <div class="sidenote">
-        <strong>Darcy Number (Da)</strong><br>
-        A dimensionless number representing the relative permeability of the medium.
+        <strong>Prior Education</strong>
+        Bachelor of Science in Petroleum and Mining Engineering from Shahjalal University of Science and Technology (SUST), Bangladesh[cite: 11, 12]. Final Year CGPA: 3.1/4.00[cite: 14].
       </div>
+
       <div class="sidenote">
-        <strong>Numerical Stability</strong><br>
-        Ensure that the Forchheimer coefficient $C_F$ is correctly scaled to avoid divergence in the Jacobian matrix.
+        <strong>Standardized Testing</strong>
+        <ul>
+          <li>GRE Overall: 329 [cite: 17]</li>
+          <li>GRE Quant: 170 (91st Percentile) [cite: 17]</li>
+          <li>GRE Verbal: 159 (80th Percentile) [cite: 17]</li>
+          <li>IELTS Academic Overall: 8.5 [cite: 17]</li>
+        </ul>
+      </div>
+
+      <div class="sidenote">
+        <strong>Research Roles</strong>
+        Graduate Research Assistant at the Department of Mathematics & Physics, North South University, and associated with the Big Matrix Lab[cite: 19, 20, 22].
+      </div>
+
+      <div class="sidenote">
+        <strong>Honors & Awards</strong>
+        Champion of the National Mathematics Olympiad (2013) and Bronze Medalist in the Duke of Edinburgh International Award Programme (2017)[cite: 39, 40].
       </div>
     </aside>
 
     <footer>
-      © 2026 Neyaz Ahmed — North South University // Big Matrix Lab
+      <span>© 2026 Neyaz Ahmed — Dhaka, Bangladesh</span>
+      <div class="nav-links">
+        <a href="#">View Full CV</a>
+        <a href="#">Publications</a>
+      </div>
     </footer>
   </div>
 </body>
