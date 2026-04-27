@@ -72,7 +72,7 @@
       color: var(--ink-dim);
     }
 
-    /* Multi-page Site Navigation */
+    /* Navigation */
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { color: var(--ink-dim); text-decoration: none; font-family: 'Fira Code', monospace; font-size: 13px; transition: color 0.2s; }
     .nav-links a.active { color: var(--accent); font-weight: 500; border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
@@ -158,7 +158,7 @@
     .intro-text { flex: 1; font-size: 1.15rem; color: var(--ink-dim); }
     .intro-text p { margin-bottom: 1.2rem; }
 
-    /* Page Hub Cards (Link to separate pages) */
+    /* Page Hub Cards (Link to GitHub Repos) */
     .hub-grid {
       display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin: 2rem 0;
     }
@@ -241,9 +241,6 @@
         <div class="journal-meta">Research Hub // 2026</div>
         <ul class="nav-links">
           <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="cfd.html">CFD Research</a></li>
-          <li><a href="math.html">Mathematics</a></li>
-          <li><a href="ml.html">Machine Learning</a></li>
           <li><a href="https://github.com/neyaz-ahmed" target="_blank">GitHub</a></li>
         </ul>
       </nav>
@@ -274,32 +271,32 @@
       <h2>Project Portfolios</h2>
       
       <p class="intro-text" style="font-size: 1rem; margin-bottom: 2rem;">
-        My work is divided into three core disciplines. Select a domain below to view specific methodologies, GitHub repositories, and papers.
+        My work is divided into three core disciplines. Select a domain below to view specific methodologies, codes, and implementations directly on my GitHub.
       </p>
 
       <div class="hub-grid">
-        <a href="cfd.html" class="hub-card">
+        <a href="https://github.com/neyaz-ahmed/Fluid-Flow-FVM-POD" target="_blank" class="hub-card">
           <div class="hub-content">
             <h3>Computational Fluid Dynamics</h3>
             <p>Porous media flows, nanoparticle transport, and finite volume discretization.</p>
           </div>
-          <div class="hub-arrow">→</div>
+          <div class="hub-arrow">↗</div>
         </a>
 
-        <a href="math.html" class="hub-card">
+        <a href="https://github.com/neyaz-ahmed/NeuralTrafficFlow" target="_blank" class="hub-card">
           <div class="hub-content">
             <h3>Mathematics & Modeling</h3>
             <p>Linear algebra applications, nonlinear PDEs, and numerical stability.</p>
           </div>
-          <div class="hub-arrow">→</div>
+          <div class="hub-arrow">↗</div>
         </a>
 
-        <a href="ml.html" class="hub-card">
+        <a href="https://github.com/neyaz-ahmed/Energy-Efficiency-ML" target="_blank" class="hub-card">
           <div class="hub-content">
             <h3>Machine Learning in Physics</h3>
             <p>Neural ODEs, building energy efficiency prediction, and statistical benchmarking.</p>
           </div>
-          <div class="hub-arrow">→</div>
+          <div class="hub-arrow">↗</div>
         </a>
       </div>
 
