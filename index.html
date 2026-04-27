@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Neyaz Ahmed // Academic Profile</title>
+  <title>Neyaz Ahmed // Research Hub</title>
   
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='75' font-family='serif' font-size='85' font-style='italic' fill='%23c8a84b' text-anchor='middle'>n</text></svg>">
 
@@ -72,8 +72,10 @@
       color: var(--ink-dim);
     }
 
+    /* Multi-page Site Navigation */
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { color: var(--ink-dim); text-decoration: none; font-family: 'Fira Code', monospace; font-size: 13px; transition: color 0.2s; }
+    .nav-links a.active { color: var(--accent); font-weight: 500; border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
     .nav-links a:hover { color: var(--accent); }
 
     h1 {
@@ -119,10 +121,11 @@
       margin-bottom: -3rem;
     }
 
-    /* Biography Layout */
-    .bio-wrapper {
+    /* Intro Layout */
+    .intro-wrapper {
       display: flex;
       gap: 2.5rem;
+      margin-top: 4rem;
       margin-bottom: 3rem;
       align-items: flex-start;
     }
@@ -152,62 +155,47 @@
       z-index: -1;
     }
 
-    .bio-text { flex: 1; font-size: 1.15rem; color: var(--ink-dim); }
-    .bio-text p { margin-bottom: 1.2rem; }
+    .intro-text { flex: 1; font-size: 1.15rem; color: var(--ink-dim); }
+    .intro-text p { margin-bottom: 1.2rem; }
 
-    /* Mathematical Elements */
-    .equation-block {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      margin: 2rem 0;
-      font-family: 'Fira Code', monospace;
-      font-size: 1.1rem;
-      text-align: center;
-      position: relative;
-      overflow-x: auto;
-      border-radius: 4px;
+    /* Page Hub Cards (Link to separate pages) */
+    .hub-grid {
+      display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin: 2rem 0;
     }
-
-    .eq-label {
-      position: absolute;
-      right: 1.5rem;
-      top: 1rem;
-      font-family: 'Fira Code', monospace;
-      font-size: 11px;
-      color: var(--ink-dim);
-    }
-
-    /* Research/Projects List */
-    .domain-row { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
-    .domain-item {
+    
+    .hub-card {
+      background: var(--surface); border: 1px solid var(--border); padding: 2rem; border-radius: 4px;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s; text-decoration: none;
       display: flex; justify-content: space-between; align-items: center;
+    }
+    
+    .hub-card:hover {
+      background: var(--surface-hover); border-color: var(--accent); transform: translateX(5px);
+    }
+
+    .hub-content h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff; margin-bottom: 0.5rem; font-weight: 400; }
+    .hub-content p { font-size: 1rem; color: var(--ink-dim); line-height: 1.5; margin: 0; }
+    .hub-arrow { font-family: 'Fira Code', monospace; color: var(--accent); font-size: 1.5rem; }
+
+    /* Accomplishments List */
+    .acc-row { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
+    .acc-item {
+      display: flex; align-items: flex-start;
       padding: 1.2rem 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
     }
-    .domain-category { 
-      font-family: 'Fira Code', monospace; font-size: 12px; color: var(--accent); flex: 1; 
-      text-transform: uppercase; letter-spacing: 1px;
+    .acc-year { 
+      font-family: 'Fira Code', monospace; font-size: 13px; color: var(--accent); 
+      width: 80px; flex-shrink: 0; padding-top: 2px;
     }
-    .domain-focus { 
-      font-family: 'Crimson Pro', serif; font-size: 16px; color: #fff; text-align: right; 
-      flex: 2; padding-left: 1rem; line-height: 1.4;
+    .acc-details { 
+      font-family: 'Crimson Pro', serif; font-size: 16px; color: #fff; line-height: 1.4;
     }
-
-    /* Skills Grid */
-    .subjects-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 2rem 0;
+    .acc-sub {
+      display: block; font-family: 'Fira Code', monospace; font-size: 12px; color: var(--ink-dim); margin-top: 0.25rem;
     }
-    .subject-card {
-      background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; border-radius: 4px;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .subject-card:hover { background: var(--surface-hover); border-color: var(--accent); }
-    .subject-card .symbol { font-family: 'Fira Code', monospace; font-size: 1.5rem; color: var(--accent); margin-bottom: 0.5rem; display: block; }
-    .subject-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; margin-bottom: 0.5rem; font-weight: 400; }
-    .subject-card p { font-size: 0.95rem; color: var(--ink-dim); line-height: 1.5; }
 
     /* Aside/Sidenotes */
-    aside { grid-column: 2; margin-top: 2.5rem; }
+    aside { grid-column: 2; margin-top: 4rem; }
 
     .sidenote {
       font-size: 14px;
@@ -223,8 +211,9 @@
       text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; font-weight: normal;
     }
 
-    .sidenote ul { padding-left: 1rem; margin-top: 0.5rem; }
-    .sidenote li { margin-bottom: 0.5rem; }
+    .sidenote ul { padding-left: 1rem; margin-top: 0.5rem; list-style-type: none; margin-left: 0; padding-left: 0; }
+    .sidenote li { margin-bottom: 0.75rem; border-bottom: 1px dashed var(--border); padding-bottom: 0.5rem; }
+    .sidenote li:last-child { border-bottom: none; }
 
     footer {
       grid-column: 1 / -1; margin-top: 4rem; padding-top: 2rem; border-bottom: 2rem solid transparent;
@@ -235,12 +224,11 @@
     @media (max-width: 900px) {
       .container { grid-template-columns: 1fr; gap: 2rem; }
       aside { grid-column: 1; margin-top: 0; }
-      .bio-wrapper { flex-direction: column; align-items: center; text-align: center; }
+      .intro-wrapper { flex-direction: column; align-items: center; text-align: center; }
       .sidenote { border-left: 2px solid var(--accent); padding: 1rem; background: var(--surface); border-radius: 0 4px 4px 0; }
       .section-label { margin-bottom: 0; margin-top: 3rem; }
       h2 { margin-top: 0.5rem; }
-      .domain-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-      .domain-focus { text-align: left; padding-left: 0; }
+      .hub-card { flex-direction: column; text-align: center; gap: 1rem; }
     }
   </style>
 </head>
@@ -250,12 +238,13 @@
   <div class="container">
     <header>
       <nav class="top-nav">
-        <div class="journal-meta">Research Portfolio // 2026</div>
+        <div class="journal-meta">Research Hub // 2026</div>
         <ul class="nav-links">
-          <li><a href="mailto:Niazahmed1864@gmail.com">Email</a></li>
-          <li><a href="https://neyaz-ahmed.github.io" target="_blank">Website</a></li>
-          <li><a href="#">GitHub</a></li>
-          <li><a href="#">LinkedIn</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="cfd.html">CFD Research</a></li>
+          <li><a href="math.html">Mathematics</a></li>
+          <li><a href="ml.html">Machine Learning</a></li>
+          <li><a href="https://github.com/neyaz-ahmed" target="_blank">GitHub</a></li>
         </ul>
       </nav>
       <h1>Neyaz <em>Ahmed</em></h1>
@@ -263,83 +252,98 @@
     </header>
 
     <div class="main-content">
-      <span class="section-label">§ 1. PROFILE</span>
-      <h2>Biography</h2>
       
-      <div class="bio-wrapper">
+      <div class="intro-wrapper">
         <div class="profile-pic">
           [Image Placeholder]
         </div>
-        <div class="bio-text">
+        <div class="intro-text">
           <p>
-            Hello, I am Neyaz Ahmed. I am currently pursuing a Master of Science in Applied Mathematics and Computational Science at North South University (GPA: 3.51), where I serve as a Graduate Research Assistant and a member of the Big Matrix Lab.
+            I am a math enthusiast and a graduate researcher at North South University. My academic background is rooted in engineering, but my primary focus and specialty now lie heavily in linear algebra and partial differential equations.
           </p>
           <p>
-            My academic foundation began with a B.S. in Petroleum and Mining Engineering from Shahjalal University of Science and Technology (SUST). Since then, my research has evolved strictly into the domains of theoretical fluid dynamics, multiphysics modeling, and high-performance scientific computing. 
+            Currently, my thesis work centers on Computational Fluid Dynamics (CFD), specifically investigating transport phenomena within porous media and nanoparticles. Alongside my fluid research, I am actively working on applying machine learning to physical systems, building predictive models, and exploring neural differential equations.
           </p>
           <p>
-            I am particularly passionate about integrating Machine Learning into physical systems—utilizing Physics-Informed Neural Networks (PINNs) and Neural ODEs. My long-term academic aim is rigorous: I intend to pioneer the field of quantum computing in Bangladesh through sustained, data-driven mathematical research.
+            Looking ahead, my long-term goal is to explore topological data analysis and differential topology—investigating how spatial and geometric properties can provide robust, alternative ways to model and solve complex dynamical systems.
           </p>
         </div>
       </div>
 
-      <span class="section-label">§ 2. MATHEMATICAL MODELING</span>
-      <h2>Thesis & Governing Physics</h2>
+      <span class="section-label">§ 1. RESEARCH DIRECTORY</span>
+      <h2>Project Portfolios</h2>
       
-      <p class="bio-text">
-        Under the supervision of Dr. Preetom Nag and Dr. Mamun Mollah, my current thesis investigates mixed convective heat and solutal transfer within a trapezoidal wavy cavity filled with a uniform porous medium.
+      <p class="intro-text" style="font-size: 1rem; margin-bottom: 2rem;">
+        My work is divided into three core disciplines. Select a domain below to view specific methodologies, GitHub repositories, and papers.
       </p>
 
-      <div class="equation-block">
-        <span class="eq-label">Darcy-Brinkman-Forchheimer</span>
-        <span style="color: var(--ink-dim);">(ρ/ε) [∂u/∂t + (1/ε)(u · ∇)u] = −∇p + (μ_eff)∇²u - (μ/K)u - (C_F ρ / √K)|u|u</span><br>
+      <div class="hub-grid">
+        <a href="cfd.html" class="hub-card">
+          <div class="hub-content">
+            <h3>Computational Fluid Dynamics</h3>
+            <p>Porous media flows, nanoparticle transport, and finite volume discretization.</p>
+          </div>
+          <div class="hub-arrow">→</div>
+        </a>
+
+        <a href="math.html" class="hub-card">
+          <div class="hub-content">
+            <h3>Mathematics & Modeling</h3>
+            <p>Linear algebra applications, nonlinear PDEs, and numerical stability.</p>
+          </div>
+          <div class="hub-arrow">→</div>
+        </a>
+
+        <a href="ml.html" class="hub-card">
+          <div class="hub-content">
+            <h3>Machine Learning in Physics</h3>
+            <p>Neural ODEs, building energy efficiency prediction, and statistical benchmarking.</p>
+          </div>
+          <div class="hub-arrow">→</div>
+        </a>
       </div>
 
-      <span class="section-label">§ 3. ACADEMIC ENDEAVORS</span>
-      <h2>Research & Publications</h2>
+      <span class="section-label">§ 2. HIGHLIGHTS</span>
+      <h2>Accomplishments & Awards</h2>
 
-      <div class="domain-row">
-        <div class="domain-item">
-          <span class="domain-category">Geothermal Dynamics</span>
-          <span class="domain-focus">Numerical Investigation of Double-Tube Vertical Geothermal Exchanger in Pile Foundations (Submitted/Under Review)</span>
+      <div class="acc-row">
+        <div class="acc-item">
+          <div class="acc-year">Scores</div>
+          <div class="acc-details">
+            GRE: 329
+            <span class="acc-sub">Quantitative: 170 (91st Percentile) // Verbal: 159 (80th Percentile)</span>
+          </div>
         </div>
-        <div class="domain-item">
-          <span class="domain-category">Predictive Benchmarking</span>
-          <span class="domain-focus">Comprehensive Statistical Benchmarking of Machine Learning Models for Building Energy Efficiency Prediction</span>
+        
+        <div class="acc-item">
+          <div class="acc-year">Scores</div>
+          <div class="acc-details">
+            IELTS Academic: 8.5
+            <span class="acc-sub">Listening: 9.0 // Reading: 8.5 // Writing: 8.0 // Speaking: 8.0</span>
+          </div>
         </div>
-        <div class="domain-item">
-          <span class="domain-category">Medical ML Diagnosis</span>
-          <span class="domain-focus">A Comprehensive Comparative Analysis of Machine Learning Models for Breast Cancer Diagnosis</span>
-        </div>
-        <div class="domain-item">
-          <span class="domain-category">Fluid Discretization</span>
-          <span class="domain-focus">Numerical Investigation of Fluid Flow in a Square Cavity: Finite Volume Discretization and POD</span>
-        </div>
-      </div>
 
-      <span class="section-label">§ 4. TECHNICAL ARSENAL</span>
-      <h2>Computational Skills</h2>
+        <div class="acc-item">
+          <div class="acc-year">2013</div>
+          <div class="acc-details">
+            Champion, National Mathematics Olympiad
+          </div>
+        </div>
 
-      <div class="subjects-grid">
-        <div class="subject-card">
-          <span class="symbol">∇</span>
-          <h3>CFD & Multiphysics</h3>
-          <p>ANSYS FLUENT, COMSOL Multiphysics, and advanced thermal management simulation.</p>
+        <div class="acc-item">
+          <div class="acc-year">Award</div>
+          <div class="acc-details">
+            Hult Prize SUST Champion
+            <span class="acc-sub">Advanced to Regional Finals, Mumbai, India</span>
+          </div>
         </div>
-        <div class="subject-card">
-          <span class="symbol">∑</span>
-          <h3>Scientific Computing</h3>
-          <p>Python (NumPy, SciPy, PyTorch, TensorFlow), MATLAB, C, and High-Performance parallel programming.</p>
-        </div>
-        <div class="subject-card">
-          <span class="symbol">∀</span>
-          <h3>ML for Physical Systems</h3>
-          <p>Neural ODEs, PINNs, hybrid physics-ML modeling, and SINDY data-driven equation discovery.</p>
-        </div>
-        <div class="subject-card">
-          <span class="symbol">∫</span>
-          <h3>Version Control</h3>
-          <p>Git, GitHub collaboration, and robust mathematical documentation via LaTeX.</p>
+
+        <div class="acc-item">
+          <div class="acc-year">2017</div>
+          <div class="acc-details">
+            Bronze Medal, Duke of Edinburgh
+            <span class="acc-sub">International Award Programme</span>
+          </div>
         </div>
       </div>
 
@@ -350,24 +354,7 @@
         <strong>📚 Education</strong>
         <ul>
           <li><strong>M.S. Applied Mathematics & Computational Science</strong><br>North South University (Ongoing)</li>
-          <li><strong>B.S. Petroleum & Mining Eng.</strong><br>SUST (CGPA: 2.86, Final Year: 3.1)</li>
-        </ul>
-      </div>
-
-      <div class="sidenote">
-        <strong>📊 Standardized Testing</strong>
-        <ul>
-          <li><strong>GRE Overall:</strong> 329<br>(Quant: 170 / 91st %ile, Verbal: 159 / 80th %ile)</li>
-          <li><strong>IELTS Academic:</strong> 8.5<br>(L: 9.0, R: 8.5, W: 8.0, S: 8.0)</li>
-        </ul>
-      </div>
-
-      <div class="sidenote">
-        <strong>🏆 Honors & Awards</strong>
-        <ul>
-          <li>Champion, National Mathematics Olympiad (2013)</li>
-          <li>Hult Prize SUST Champion</li>
-          <li>Bronze Medal, Duke of Edinburgh Award</li>
+          <li><strong>B.S. Petroleum & Mining Engineering</strong><br>Shahjalal University of Science and Technology (SUST)</li>
         </ul>
       </div>
 
@@ -377,17 +364,20 @@
       </div>
       
       <div class="sidenote">
-        <strong>🤝 References</strong>
+        <strong>🤝 Contact & References</strong>
+        <a href="mailto:Niazahmed1864@gmail.com" style="color:var(--accent); text-decoration:none; display:block; margin-bottom: 0.5rem;">Email Me</a>
+        
         Dr. Preetom Nag<br>
         Associate Professor, NSU<br>
-        <a href="mailto:preetom.nag@northsouth.edu" style="color:var(--accent); text-decoration:none;">preetom.nag@northsouth.edu</a>
+        <a href="mailto:preetom.nag@northsouth.edu" style="color:var(--ink-dim); text-decoration:none; font-size: 12px;">preetom.nag@northsouth.edu</a>
       </div>
     </aside>
 
     <footer>
       <span>© 2026 Neyaz Ahmed — Dhaka, Bangladesh</span>
-      <div class="nav-links">
+      <div class="nav-links" style="gap: 1.5rem;">
         <a href="#">Download Full CV</a>
+        <a href="https://neyaz-ahmed.github.io" target="_blank">Old Site</a>
       </div>
     </footer>
   </div>
