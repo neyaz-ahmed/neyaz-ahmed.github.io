@@ -1,382 +1,637 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Neyaz Ahmed // Research Hub</title>
-  
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='75' font-family='serif' font-size='85' font-style='italic' fill='%23c8a84b' text-anchor='middle'>n</text></svg>">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='75' font-family='serif' font-size='85' font-style='italic' fill='%236b4c2a' text-anchor='middle'>n</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Fira+Code:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet" />
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Fira+Code:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
-
+    /* ── Tokens ── */
     :root {
-      --paper: #121416;
-      --surface: #1a1d21;
-      --surface-hover: #22262b;
-      --ink: #e2e8f0;
-      --ink-dim: #94a3b8;
-      --accent: #c8a84b;
-      --accent-dim: rgba(200, 168, 75, 0.15);
-      --border: #2d3748;
-      --margin-width: 320px;
+      --parchment:    #f5ede0;
+      --parchment-2:  #efe3d0;
+      --parchment-3:  #e6d5bc;
+      --coffee:       #6b4c2a;
+      --coffee-mid:   #8c6239;
+      --coffee-light: #b38b5c;
+      --espresso:     #3b2410;
+      --ink:          #2c1f0e;
+      --ink-mid:      #5c4230;
+      --ink-dim:      #8a7060;
+      --border:       rgba(107,76,42,0.18);
+      --border-strong:rgba(107,76,42,0.35);
+      --serif:        'EB Garamond', Georgia, serif;
+      --display:      'Cormorant Garamond', Georgia, serif;
+      --mono:         'Fira Code', monospace;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      background: var(--paper);
+      background: var(--parchment);
       color: var(--ink);
-      font-family: 'Crimson Pro', serif;
-      line-height: 1.7;
-      font-size: 18px;
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.75;
       overflow-x: hidden;
     }
 
-    /* Mathematical Symbol Background */
-    .math-bg {
-      position: fixed; inset: 0; pointer-events: none; z-index: -1;
-      background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg' fill='rgba(255,255,255,0.025)' font-family='Crimson Pro, serif' font-size='32' font-style='italic'%3E%3Ctext x='40' y='60'%3E%CF%80%3C/text%3E%3Ctext x='180' y='120'%3E%E2%88%AB%3C/text%3E%3Ctext x='320' y='80'%3E%E2%88%91%3C/text%3E%3Ctext x='80' y='220'%3E%E2%88%9E%3C/text%3E%3Ctext x='250' y='260'%3E%E2%88%82%3C/text%3E%3Ctext x='140' y='350'%3E%E2%88%87%3C/text%3E%3Ctext x='340' y='320'%3E%CE%A9%3C/text%3E%3Ctext x='50' y='360'%3E%CE%BB%3C/text%3E%3Ctext x='200' y='40'%3E%CE%B8%3C/text%3E%3Ctext x='280' y='180'%3E%CE%A6%3C/text%3E%3C/svg%3E");
-      background-size: 400px 400px;
+    /* ══════════════════════════════
+       MATHEMATICAL BACKGROUND
+       SVG grid + floating symbols
+    ══════════════════════════════ */
+    .math-canvas {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      overflow: hidden;
     }
 
-    .container {
-      max-width: 1200px;
+    /* Ruled notebook lines */
+    .math-canvas::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(107,76,42,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(107,76,42,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    /* Polar coordinate circles */
+    .math-canvas::after {
+      content: '';
+      position: absolute;
+      width: 800px; height: 800px;
+      top: -200px; right: -200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, transparent 20%, transparent 20%),
+                  radial-gradient(circle at center,
+                    transparent 60px, rgba(107,76,42,0.04) 61px, transparent 62px,
+                    transparent 120px, rgba(107,76,42,0.04) 121px, transparent 122px,
+                    transparent 180px, rgba(107,76,42,0.04) 181px, transparent 182px,
+                    transparent 240px, rgba(107,76,42,0.04) 241px, transparent 242px,
+                    transparent 300px, rgba(107,76,42,0.04) 301px, transparent 302px,
+                    transparent 360px, rgba(107,76,42,0.04) 361px, transparent 362px
+                  );
+    }
+
+    .sym {
+      position: absolute;
+      font-family: var(--display);
+      font-style: italic;
+      color: rgba(107,76,42,0.08);
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* ══════════════════════════════
+       PAGE LAYOUT
+    ══════════════════════════════ */
+    .page {
+      position: relative; z-index: 1;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 3rem 2rem;
-      display: grid;
-      grid-template-columns: 1fr var(--margin-width);
-      gap: 4rem;
+      padding: 0 2rem 4rem;
     }
 
-    /* Navigation & Header */
-    header {
-      grid-column: 1 / -1;
+    /* ══════════════════════════════
+       NAVIGATION
+    ══════════════════════════════ */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 0;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 3rem;
-      margin-bottom: 2rem;
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(245,237,224,0.92);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      margin: 0 -2rem;
+      padding-left: 2rem; padding-right: 2rem;
     }
-
-    .top-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4rem;
-    }
-
-    .journal-meta {
-      font-family: 'Fira Code', monospace;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    .nav-brand {
+      font-family: var(--mono);
+      font-size: 12px;
       color: var(--ink-dim);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono); font-size: 12px;
+      color: var(--ink-dim); text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .nav-links a.active, .nav-links a:hover { color: var(--coffee); }
+    .nav-links a.active { border-bottom: 1px solid var(--coffee); padding-bottom: 2px; }
+
+    /* ══════════════════════════════
+       HEADER / HERO
+    ══════════════════════════════ */
+    header {
+      padding: 5rem 0 3.5rem;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: end;
     }
 
-    /* Navigation */
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--ink-dim); text-decoration: none; font-family: 'Fira Code', monospace; font-size: 13px; transition: color 0.2s; }
-    .nav-links a.active { color: var(--accent); font-weight: 500; border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
-    .nav-links a:hover { color: var(--accent); }
+    .header-left {}
+
+    .section-marker {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--coffee-light);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 1rem;
+    }
 
     h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3.5rem, 8vw, 6rem);
-      font-weight: 400;
-      line-height: 1;
-      margin: 0;
-      color: #ffffff;
-      letter-spacing: -0.02em;
+      font-family: var(--display);
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      color: var(--espresso);
+      letter-spacing: -0.01em;
     }
-    h1 em { color: var(--accent); font-style: italic; }
+    h1 em { color: var(--coffee); font-style: italic; }
 
-    .hero-subtitle {
-      font-family: 'Fira Code', monospace;
-      font-size: clamp(0.9rem, 2vw, 1.2rem);
-      color: var(--accent);
+    .hero-tagline {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--coffee);
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
       margin-top: 1.5rem;
       display: block;
     }
 
-    /* Main Content */
-    .main-content { grid-column: 1; }
+    /* Decorative equation in header */
+    .header-eq {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink-dim);
+      text-align: right;
+      line-height: 2;
+      border-left: 1px solid var(--border);
+      padding-left: 2rem;
+    }
+    .header-eq .eq-label {
+      font-family: var(--mono);
+      font-style: normal;
+      font-size: 10px;
+      color: var(--coffee-light);
+      letter-spacing: 0.12em;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
 
+    /* ══════════════════════════════
+       TWO-COLUMN BODY
+    ══════════════════════════════ */
+    .body-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 4rem;
+      padding-top: 3rem;
+    }
+
+    /* ══════════════════════════════
+       SECTION HEADINGS
+    ══════════════════════════════ */
     h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
+      font-family: var(--display);
+      font-size: 1.9rem;
       font-weight: 400;
-      margin: 3.5rem 0 1.5rem;
+      color: var(--espresso);
+      letter-spacing: 0.01em;
+      margin: 3rem 0 1.25rem;
       padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--border);
-      color: #ffffff;
     }
 
-    .section-label {
-      font-family: 'Fira Code', monospace;
-      font-size: 12px;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      display: block;
-      margin-bottom: -3rem;
-    }
-
-    /* Intro Layout */
+    /* ══════════════════════════════
+       INTRO / BIO
+    ══════════════════════════════ */
     .intro-wrapper {
       display: flex;
       gap: 2.5rem;
-      margin-top: 4rem;
-      margin-bottom: 3rem;
       align-items: flex-start;
+      margin-bottom: 1rem;
     }
 
-    .profile-pic {
+    .profile-frame {
       flex-shrink: 0;
-      width: 200px;
-      height: 250px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 165px; height: 205px;
+      background: var(--parchment-2);
+      border: 1px solid var(--border-strong);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
       color: var(--ink-dim);
-      font-family: 'Fira Code', monospace;
-      font-size: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
       position: relative;
+      overflow: hidden;
     }
-    
-    .profile-pic::after {
-      content: '';
+    .profile-frame::before {
+      content: 'n';
       position: absolute;
-      inset: -5px;
-      border: 1px solid var(--accent-dim);
-      border-radius: 6px;
-      z-index: -1;
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 160px;
+      color: rgba(107,76,42,0.07);
+      line-height: 1;
+      top: 10px; left: 10px;
     }
+    .profile-frame span { position: relative; z-index: 1; }
 
-    .intro-text { flex: 1; font-size: 1.15rem; color: var(--ink-dim); }
-    .intro-text p { margin-bottom: 1.2rem; }
+    .bio { flex: 1; }
+    .bio p { font-size: 1.05rem; color: var(--ink-mid); margin-bottom: 1.1rem; }
+    .bio p:last-child { margin-bottom: 0; }
 
-    /* Page Hub Cards (Link to GitHub Repos) */
-    .hub-grid {
-      display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin: 2rem 0;
-    }
-    
+    /* ══════════════════════════════
+       PROJECT HUB CARDS
+    ══════════════════════════════ */
+    .hub-grid { display: flex; flex-direction: column; gap: 1px; margin: 1.5rem 0 0.5rem; overflow: hidden; border-radius: 4px; border: 1px solid var(--border-strong); }
+
     .hub-card {
-      background: var(--surface); border: 1px solid var(--border); padding: 2rem; border-radius: 4px;
-      transition: background 0.2s, border-color 0.2s, transform 0.2s; text-decoration: none;
+      background: var(--parchment-2);
+      padding: 1.5rem 1.75rem;
+      text-decoration: none;
       display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem;
+      transition: background 0.2s;
+      border-bottom: 1px solid var(--border);
     }
-    
-    .hub-card:hover {
-      background: var(--surface-hover); border-color: var(--accent); transform: translateX(5px);
+    .hub-card:last-child { border-bottom: none; }
+    .hub-card:hover { background: var(--parchment-3); }
+
+    .hub-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--coffee-light);
+      letter-spacing: 0.1em;
+      flex-shrink: 0;
+      width: 30px;
+    }
+    .hub-body { flex: 1; }
+    .hub-body h3 {
+      font-family: var(--display);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--espresso);
+      margin-bottom: 0.2rem;
+    }
+    .hub-body p { font-size: 0.9rem; color: var(--ink-dim); margin: 0; line-height: 1.5; }
+    .hub-arrow {
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      color: var(--coffee);
+      flex-shrink: 0;
     }
 
-    .hub-content h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff; margin-bottom: 0.5rem; font-weight: 400; }
-    .hub-content p { font-size: 1rem; color: var(--ink-dim); line-height: 1.5; margin: 0; }
-    .hub-arrow { font-family: 'Fira Code', monospace; color: var(--accent); font-size: 1.5rem; }
+    /* ══════════════════════════════
+       ACCOMPLISHMENTS
+    ══════════════════════════════ */
+    .acc-list { display: flex; flex-direction: column; gap: 0; margin: 1.5rem 0; border: 1px solid var(--border-strong); border-radius: 4px; overflow: hidden; }
 
-    /* Accomplishments List */
-    .acc-row { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
     .acc-item {
-      display: flex; align-items: flex-start;
-      padding: 1.2rem 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+      display: flex; align-items: flex-start; gap: 1.25rem;
+      padding: 1.1rem 1.5rem;
+      background: var(--parchment-2);
+      border-bottom: 1px solid var(--border);
     }
-    .acc-year { 
-      font-family: 'Fira Code', monospace; font-size: 13px; color: var(--accent); 
-      width: 80px; flex-shrink: 0; padding-top: 2px;
+    .acc-item:last-child { border-bottom: none; }
+    .acc-item:nth-child(even) { background: var(--parchment); }
+
+    .acc-year {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--coffee-light); width: 72px;
+      flex-shrink: 0; padding-top: 3px;
+      letter-spacing: 0.05em;
     }
-    .acc-details { 
-      font-family: 'Crimson Pro', serif; font-size: 16px; color: #fff; line-height: 1.4;
-    }
+    .acc-main { font-size: 0.98rem; color: var(--ink); line-height: 1.45; }
     .acc-sub {
-      display: block; font-family: 'Fira Code', monospace; font-size: 12px; color: var(--ink-dim); margin-top: 0.25rem;
+      display: block;
+      font-family: var(--mono); font-size: 11px;
+      color: var(--ink-dim); margin-top: 0.2rem;
     }
 
-    /* Aside/Sidenotes */
-    aside { grid-column: 2; margin-top: 4rem; }
+    /* ══════════════════════════════
+       SIDEBAR / ASIDE
+    ══════════════════════════════ */
+    aside { padding-top: 3rem; }
 
     .sidenote {
-      font-size: 14px;
-      color: var(--ink-dim);
-      border-left: 1px solid var(--border);
-      padding-left: 1rem;
       margin-bottom: 2.5rem;
-      line-height: 1.6;
+      padding: 1.25rem 1.5rem;
+      background: var(--parchment-2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      border-top: 3px solid var(--coffee-light);
+      font-size: 14px;
+      color: var(--ink-mid);
     }
-
-    .sidenote strong {
-      display: block; color: var(--accent); font-family: 'Fira Code', monospace; font-size: 12px;
-      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; font-weight: normal;
+    .sidenote-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--coffee);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.75rem;
     }
+    .sidenote ul { list-style: none; }
+    .sidenote li {
+      padding: 0.6rem 0;
+      border-bottom: 1px dashed var(--border);
+      line-height: 1.5;
+    }
+    .sidenote li:last-child { border-bottom: none; padding-bottom: 0; }
+    .sidenote li strong { display: block; color: var(--espresso); font-weight: 600; font-size: 13px; }
+    .sidenote li span { font-size: 12px; color: var(--ink-dim); }
+    .sidenote a { color: var(--coffee); text-decoration: none; }
+    .sidenote a:hover { text-decoration: underline; }
 
-    .sidenote ul { padding-left: 1rem; margin-top: 0.5rem; list-style-type: none; margin-left: 0; padding-left: 0; }
-    .sidenote li { margin-bottom: 0.75rem; border-bottom: 1px dashed var(--border); padding-bottom: 0.5rem; }
-    .sidenote li:last-child { border-bottom: none; }
+    /* Inline formula in sidebar */
+    .side-formula {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink-dim);
+      text-align: center;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--parchment);
+      margin-bottom: 2.5rem;
+      line-height: 1.9;
+    }
+    .side-formula .fl { font-family: var(--mono); font-style: normal; font-size: 10px; color: var(--coffee-light); display: block; letter-spacing: 0.1em; margin-bottom: 0.25rem; }
 
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
     footer {
-      grid-column: 1 / -1; margin-top: 4rem; padding-top: 2rem; border-bottom: 2rem solid transparent;
-      border-top: 1px solid var(--border); display: flex; justify-content: space-between;
-      font-family: 'Fira Code', monospace; font-size: 12px; color: var(--ink-dim);
+      margin-top: 4rem;
+      padding: 1.75rem 0;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-dim);
     }
+    footer a { color: var(--ink-dim); text-decoration: none; margin-left: 1.5rem; }
+    footer a:hover { color: var(--coffee); }
 
-    @media (max-width: 900px) {
-      .container { grid-template-columns: 1fr; gap: 2rem; }
-      aside { grid-column: 1; margin-top: 0; }
-      .intro-wrapper { flex-direction: column; align-items: center; text-align: center; }
-      .sidenote { border-left: 2px solid var(--accent); padding: 1rem; background: var(--surface); border-radius: 0 4px 4px 0; }
-      .section-label { margin-bottom: 0; margin-top: 3rem; }
-      h2 { margin-top: 0.5rem; }
-      .hub-card { flex-direction: column; text-align: center; gap: 1rem; }
+    /* ══════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    header, .body-grid { animation: fadeUp 0.65s ease both; }
+    .body-grid { animation-delay: 0.1s; }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+    @media (max-width: 860px) {
+      .body-grid { grid-template-columns: 1fr; gap: 1rem; }
+      aside { padding-top: 0; }
+      header { grid-template-columns: 1fr; gap: 1.5rem; }
+      .header-eq { border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 1rem; text-align: left; }
+      .intro-wrapper { flex-direction: column; }
+      .profile-frame { width: 100%; height: 160px; }
+    }
+    @media (max-width: 600px) {
+      nav { flex-direction: column; gap: 1rem; align-items: flex-start; }
+      h1 { font-size: 3rem; }
     }
   </style>
 </head>
 <body>
-  <div class="math-bg"></div>
 
-  <div class="container">
+  <!-- ══ Mathematical background canvas ══ -->
+  <div class="math-canvas" aria-hidden="true">
+    <span class="sym" style="font-size:160px; top:5vh;  left:3vw;  opacity:0.6;">∫</span>
+    <span class="sym" style="font-size:120px; top:25vh; right:6vw; opacity:0.5;">∑</span>
+    <span class="sym" style="font-size:90px;  bottom:30vh; left:8vw; opacity:0.4;">∇</span>
+    <span class="sym" style="font-size:200px; bottom:5vh; right:2vw; opacity:0.35;">π</span>
+    <span class="sym" style="font-size:80px;  top:55vh; left:45vw; opacity:0.4;">∂</span>
+    <span class="sym" style="font-size:110px; top:70vh; left:22vw; opacity:0.35;">λ</span>
+    <span class="sym" style="font-size:70px;  top:15vh; left:60vw; opacity:0.4;">Ω</span>
+    <span class="sym" style="font-size:60px;  top:40vh; left:15vw; opacity:0.35;">∞</span>
+    <span class="sym" style="font-size:75px;  bottom:15vh; left:55vw; opacity:0.4;">Φ</span>
+    <span class="sym" style="font-size:55px;  top:82vh; right:25vw; opacity:0.35;">θ</span>
+    <span class="sym" style="font-size:50px;  top:8vh;  right:30vw; opacity:0.3;">α</span>
+    <span class="sym" style="font-size:65px;  bottom:45vh; right:15vw; opacity:0.3;">ε</span>
+  </div>
+
+  <div class="page">
+
+    <!-- ══ Navigation ══ -->
+    <nav>
+      <div class="nav-brand">Research Hub // 2026</div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="https://github.com/neyaz-ahmed" target="_blank">GitHub ↗</a></li>
+      </ul>
+    </nav>
+
+    <!-- ══ Hero Header ══ -->
     <header>
-      <nav class="top-nav">
-        <div class="journal-meta">Research Hub // 2026</div>
-        <ul class="nav-links">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="https://github.com/neyaz-ahmed" target="_blank">GitHub</a></li>
-        </ul>
-      </nav>
-      <h1>Neyaz <em>Ahmed</em></h1>
-      <span class="hero-subtitle">Applied Mathematics & Computational Science</span>
+      <div class="header-left">
+        <span class="section-marker">Applied Mathematics &amp; Computational Science</span>
+        <h1>Neyaz<br><em>Ahmed</em></h1>
+        <span class="hero-tagline">Graduate Researcher · North South University</span>
+      </div>
+
+      <div class="header-eq">
+        <span class="eq-label">Navier–Stokes (incompressible)</span>
+        ∂<b>u</b>/∂t + (<b>u</b>·∇)<b>u</b> = −∇p + ν∇²<b>u</b> + <b>f</b><br>
+        ∇·<b>u</b> = 0<br><br>
+        <span class="eq-label">Continuity (porous media)</span>
+        ∂(φρ)/∂t + ∇·(ρ<b>u</b>) = 0
+      </div>
     </header>
 
-    <div class="main-content">
-      
-      <div class="intro-wrapper">
-        <div class="profile-pic">
-          [Image Placeholder]
-        </div>
-        <div class="intro-text">
-          <p>
-            I am a math enthusiast and a graduate researcher at North South University. My academic background is rooted in engineering, but my primary focus and specialty now lie heavily in linear algebra and partial differential equations.
-          </p>
-          <p>
-            Currently, my thesis work centers on Computational Fluid Dynamics (CFD), specifically investigating transport phenomena within porous media and nanoparticles. Alongside my fluid research, I am actively working on applying machine learning to physical systems, building predictive models, and exploring neural differential equations.
-          </p>
-          <p>
-            Looking ahead, my long-term goal is to explore topological data analysis and differential topology—investigating how spatial and geometric properties can provide robust, alternative ways to model and solve complex dynamical systems.
-          </p>
-        </div>
-      </div>
+    <!-- ══ Body ══ -->
+    <div class="body-grid">
 
-      <span class="section-label">§ 1. RESEARCH DIRECTORY</span>
-      <h2>Project Portfolios</h2>
-      
-      <p class="intro-text" style="font-size: 1rem; margin-bottom: 2rem;">
-        My work is divided into three core disciplines. Select a domain below to view specific methodologies, codes, and implementations directly on my GitHub.
-      </p>
+      <!-- ── Main column ── -->
+      <main>
 
-      <div class="hub-grid">
-        <a href="https://github.com/neyaz-ahmed/Fluid-Flow-FVM-POD" target="_blank" class="hub-card">
-          <div class="hub-content">
-            <h3>Computational Fluid Dynamics</h3>
-            <p>Porous media flows, nanoparticle transport, and finite volume discretization.</p>
+        <!-- Bio -->
+        <span class="section-marker">§ 1. About</span>
+        <h2>Introduction</h2>
+
+        <div class="intro-wrapper">
+          <div class="profile-frame">
+            <span>[Photo]</span>
           </div>
-          <div class="hub-arrow">↗</div>
-        </a>
-
-        <a href="https://github.com/neyaz-ahmed/NeuralTrafficFlow" target="_blank" class="hub-card">
-          <div class="hub-content">
-            <h3>Mathematics & Modeling</h3>
-            <p>Linear algebra applications, nonlinear PDEs, and numerical stability.</p>
-          </div>
-          <div class="hub-arrow">↗</div>
-        </a>
-
-        <a href="https://github.com/neyaz-ahmed/Energy-Efficiency-ML" target="_blank" class="hub-card">
-          <div class="hub-content">
-            <h3>Machine Learning in Physics</h3>
-            <p>Neural ODEs, building energy efficiency prediction, and statistical benchmarking.</p>
-          </div>
-          <div class="hub-arrow">↗</div>
-        </a>
-      </div>
-
-      <span class="section-label">§ 2. HIGHLIGHTS</span>
-      <h2>Accomplishments & Awards</h2>
-
-      <div class="acc-row">
-        <div class="acc-item">
-          <div class="acc-year">Scores</div>
-          <div class="acc-details">
-            GRE: 329
-            <span class="acc-sub">Quantitative: 170 (91st Percentile) // Verbal: 159 (80th Percentile)</span>
-          </div>
-        </div>
-        
-        <div class="acc-item">
-          <div class="acc-year">Scores</div>
-          <div class="acc-details">
-            IELTS Academic: 8.5
-            <span class="acc-sub">Listening: 9.0 // Reading: 8.5 // Writing: 8.0 // Speaking: 8.0</span>
+          <div class="bio">
+            <p>I am a math enthusiast and a graduate researcher at North South University. My academic background is rooted in engineering, but my primary focus and specialty now lie heavily in linear algebra and partial differential equations.</p>
+            <p>Currently, my thesis work centres on Computational Fluid Dynamics (CFD), specifically investigating transport phenomena within porous media and nanoparticles. Alongside my fluid research, I am actively applying machine learning to physical systems — building predictive models and exploring neural differential equations.</p>
+            <p>My long-term goal is to explore topological data analysis and differential topology, investigating how spatial and geometric properties can provide robust, alternative ways to model and solve complex dynamical systems.</p>
           </div>
         </div>
 
-        <div class="acc-item">
-          <div class="acc-year">2013</div>
-          <div class="acc-details">
-            Champion, National Mathematics Olympiad
+        <!-- Projects -->
+        <span class="section-marker">§ 2. Research Directory</span>
+        <h2>Project Portfolios</h2>
+
+        <p style="font-size:0.95rem; color:var(--ink-dim); margin-bottom:1.25rem;">
+          My work spans three core disciplines. Each links directly to implementations on GitHub.
+        </p>
+
+        <div class="hub-grid">
+          <a href="https://github.com/neyaz-ahmed/Fluid-Flow-FVM-POD" target="_blank" class="hub-card">
+            <div class="hub-num">01.</div>
+            <div class="hub-body">
+              <h3>Computational Fluid Dynamics</h3>
+              <p>Porous media flows, nanoparticle transport, finite volume discretization.</p>
+            </div>
+            <div class="hub-arrow">↗</div>
+          </a>
+
+          <a href="https://github.com/neyaz-ahmed/NeuralTrafficFlow" target="_blank" class="hub-card">
+            <div class="hub-num">02.</div>
+            <div class="hub-body">
+              <h3>Mathematics &amp; Modelling</h3>
+              <p>Linear algebra applications, nonlinear PDEs, and numerical stability.</p>
+            </div>
+            <div class="hub-arrow">↗</div>
+          </a>
+
+          <a href="https://github.com/neyaz-ahmed/Energy-Efficiency-ML" target="_blank" class="hub-card">
+            <div class="hub-num">03.</div>
+            <div class="hub-body">
+              <h3>Machine Learning in Physics</h3>
+              <p>Neural ODEs, building energy efficiency prediction, and statistical benchmarking.</p>
+            </div>
+            <div class="hub-arrow">↗</div>
+          </a>
+        </div>
+
+        <!-- Accomplishments -->
+        <span class="section-marker">§ 3. Highlights</span>
+        <h2>Accomplishments &amp; Awards</h2>
+
+        <div class="acc-list">
+          <div class="acc-item">
+            <div class="acc-year">GRE</div>
+            <div class="acc-main">
+              Score: 329
+              <span class="acc-sub">Quantitative 170 — 91st Percentile · Verbal 159 — 80th Percentile</span>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-year">IELTS</div>
+            <div class="acc-main">
+              Academic: 8.5
+              <span class="acc-sub">L: 9.0 · R: 8.5 · W: 8.0 · S: 8.0</span>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-year">2013</div>
+            <div class="acc-main">
+              Champion, National Mathematics Olympiad
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-year">Award</div>
+            <div class="acc-main">
+              Hult Prize — SUST Champion
+              <span class="acc-sub">Advanced to Regional Finals, Mumbai, India</span>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-year">2017</div>
+            <div class="acc-main">
+              Bronze Medal, Duke of Edinburgh International Award Programme
+            </div>
           </div>
         </div>
 
-        <div class="acc-item">
-          <div class="acc-year">Award</div>
-          <div class="acc-details">
-            Hult Prize SUST Champion
-            <span class="acc-sub">Advanced to Regional Finals, Mumbai, India</span>
-          </div>
+      </main>
+
+      <!-- ── Sidebar ── -->
+      <aside>
+
+        <!-- Decorative formula -->
+        <div class="side-formula">
+          <span class="fl">Fourier Transform</span>
+          f̂(ξ) = ∫ f(x) e<sup>−2πixξ</sup> dx
         </div>
 
-        <div class="acc-item">
-          <div class="acc-year">2017</div>
-          <div class="acc-details">
-            Bronze Medal, Duke of Edinburgh
-            <span class="acc-sub">International Award Programme</span>
-          </div>
+        <!-- Education -->
+        <div class="sidenote">
+          <span class="sidenote-label">Education</span>
+          <ul>
+            <li>
+              <strong>M.S. Applied Mathematics &amp; Computational Science</strong>
+              <span>North South University — Ongoing</span>
+            </li>
+            <li>
+              <strong>B.S. Petroleum &amp; Mining Engineering</strong>
+              <span>Shahjalal University of Science and Technology (SUST)</span>
+            </li>
+          </ul>
         </div>
-      </div>
 
-    </div>
+        <!-- Teaching -->
+        <div class="sidenote">
+          <span class="sidenote-label">Teaching &amp; Mentorship</span>
+          Teaching Assistant in Applied Mathematics at NSU (2024–Present). Personal mentor in Mathematics, Programming, and IELTS preparation.
+        </div>
 
-    <aside>
-      <div class="sidenote">
-        <strong>📚 Education</strong>
-        <ul>
-          <li><strong>M.S. Applied Mathematics & Computational Science</strong><br>North South University (Ongoing)</li>
-          <li><strong>B.S. Petroleum & Mining Engineering</strong><br>Shahjalal University of Science and Technology (SUST)</li>
-        </ul>
-      </div>
+        <!-- Contact -->
+        <div class="sidenote">
+          <span class="sidenote-label">Contact &amp; References</span>
+          <a href="mailto:Niazahmed1864@gmail.com">Niazahmed1864@gmail.com</a>
+          <br /><br />
+          <strong style="color:var(--espresso); font-size:13px;">Dr. Preetom Nag</strong>
+          <span style="font-size:12px; color:var(--ink-dim); display:block;">Associate Professor, NSU</span>
+          <a href="mailto:preetom.nag@northsouth.edu" style="font-size:12px;">preetom.nag@northsouth.edu</a>
+        </div>
 
-      <div class="sidenote">
-        <strong>👨‍🏫 Teaching & Mentorship</strong>
-        Teaching Assistant in Applied Mathematics at NSU (2024-Present). Personal mentor in Mathematics, Programming, and IELTS.
-      </div>
-      
-      <div class="sidenote">
-        <strong>🤝 Contact & References</strong>
-        <a href="mailto:Niazahmed1864@gmail.com" style="color:var(--accent); text-decoration:none; display:block; margin-bottom: 0.5rem;">Email Me</a>
-        
-        Dr. Preetom Nag<br>
-        Associate Professor, NSU<br>
-        <a href="mailto:preetom.nag@northsouth.edu" style="color:var(--ink-dim); text-decoration:none; font-size: 12px;">preetom.nag@northsouth.edu</a>
-      </div>
-    </aside>
+        <!-- Decorative formula 2 -->
+        <div class="side-formula">
+          <span class="fl">Cauchy–Schwarz</span>
+          |⟨u, v⟩|² ≤ ⟨u, u⟩ · ⟨v, v⟩
+        </div>
 
+      </aside>
+
+    </div><!-- /body-grid -->
+
+    <!-- ══ Footer ══ -->
     <footer>
       <span>© 2026 Neyaz Ahmed — Dhaka, Bangladesh</span>
-      <div class="nav-links" style="gap: 1.5rem;">
-        <a href="#">Download Full CV</a>
-        <a href="https://neyaz-ahmed.github.io" target="_blank">Old Site</a>
+      <div>
+        <a href="#">Download CV</a>
+        <a href="https://neyaz-ahmed.github.io" target="_blank">Old Site ↗</a>
+        <a href="https://github.com/neyaz-ahmed" target="_blank">GitHub ↗</a>
       </div>
     </footer>
-  </div>
+
+  </div><!-- /page -->
+
 </body>
 </html>
