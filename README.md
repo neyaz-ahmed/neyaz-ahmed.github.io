@@ -2,22 +2,19 @@
 
 Source for my academic website: **[neyaz-ahmed.github.io](https://neyaz-ahmed.github.io)**
 
-I am a graduate researcher in **Applied Mathematics & Computational Science** at North South University, Bangladesh. My thesis studies transport phenomena in porous media and nanofluids with finite-volume CFD, and I build reduced-order and neural-differential-equation models to accelerate such simulations. I am currently seeking Ph.D. positions.
+I am an M.S. student and Graduate Research Assistant in **Applied Mathematics & Computational Science** at North South University, Bangladesh. I use finite-volume CFD and data-driven surrogate models to study convective heat transfer, from phase-change thermal storage to porous cavities and geothermal systems. I am currently seeking Ph.D. positions.
 
 💼 [LinkedIn](https://www.linkedin.com/in/neyaz-ahmed-31212019b/) · 🐙 [GitHub](https://github.com/neyaz-ahmed) · 📧 Niazahmed1864@gmail.com
 
 ---
 
-## Research & Projects
-- **M.S. Thesis:** CFD of transport phenomena in porous media and nanofluids (supervisor: Dr. Preetom Nag)
-- **[Fluid-Flow-FVM-POD](https://github.com/neyaz-ahmed/Fluid-Flow-FVM-POD):** finite-volume flow solver with POD model reduction
-- **[NeuralTrafficFlow](https://github.com/neyaz-ahmed/NeuralTrafficFlow):** Neural ODE–PDE hybrid model of traffic flow
-- **[Energy-Efficiency-ML](https://github.com/neyaz-ahmed/Energy-Efficiency-ML):** machine learning for building energy efficiency
-- **Supercritical CO₂ in microtubes:** numerical study of flow and heat transfer
-- **ML for materials:** predicting band gaps and band alignments in semiconductors
+## Research
+- **M.S. Thesis (in progress):** PCM vs. nano-enhanced PCM thermal storage in cavities with serrated heat sources (ANSYS Fluent, enthalpy–porosity), advised by Dr. Preetom Nag
+- **Manuscripts under review:** surrogate modelling of MHD mixed convection in a hybrid ferrofluid; a double-tube vertical geothermal exchanger in pile foundations; natural convection in a porous square cavity with discrete cylindrical heat sources
+- **Projects:** AGR reactor CFD with Kriging optimisation; ML benchmarking for [building energy efficiency](https://github.com/neyaz-ahmed/Energy-Efficiency-ML) and breast cancer diagnosis; flow through a 3D 90° pipe bend
 
 ## Skills
-Python (NumPy, SciPy, PyTorch, scikit-learn) · MATLAB · ANSYS Fluent · COMSOL Multiphysics · HPC · LaTeX
+ANSYS Fluent · COMSOL Multiphysics · Lattice Boltzmann (in-house D2Q9 solver, C) · OpenMP / MPI / CUDA · Python (NumPy, SciPy, PyTorch, TensorFlow) · MATLAB / Simulink · LaTeX
 
 ---
 
