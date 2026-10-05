@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Neyaz Ahmed — Applied Mathematics &amp; Computational Science</title>
-  <meta name="description" content="Neyaz Ahmed — graduate researcher in Applied Mathematics &amp; Computational Science at North South University. CFD of transport in porous media, reduced-order modelling, and neural differential equations. Seeking Ph.D. positions." />
+  <meta name="description" content="Neyaz Ahmed — Graduate Research Assistant in Applied Mathematics &amp; Computational Science at North South University. Finite-volume CFD and surrogate modelling of convective heat transfer and phase-change thermal storage. Seeking Ph.D. positions." />
   <meta name="author" content="Neyaz Ahmed" />
 
   <!-- Link previews (LinkedIn, email, messaging apps) -->
   <meta property="og:type" content="profile" />
   <meta property="og:title" content="Neyaz Ahmed — Applied Mathematics &amp; Computational Science" />
-  <meta property="og:description" content="Graduate researcher at North South University working on CFD of porous-media transport, reduced-order models, and neural differential equations. Seeking Ph.D. positions." />
+  <meta property="og:description" content="Graduate Research Assistant at North South University working on CFD and surrogate modelling of convective heat transfer, phase-change thermal storage and porous media. Seeking Ph.D. positions." />
   <meta property="og:url" content="https://neyaz-ahmed.github.io/" />
   <meta name="twitter:card" content="summary" />
 
@@ -515,6 +515,7 @@
         <li><a href="#research">Research</a></li>
         <li><a href="#publications">Publications</a></li>
         <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#awards">Awards</a></li>
         <li><a href="#contact">Contact</a></li>
         <li data-requires="cv.pdf"><a href="cv.pdf" target="_blank" rel="noopener">CV ↓</a></li>
@@ -526,8 +527,8 @@
       <div class="header-left">
         <span class="section-marker">Applied Mathematics &amp; Computational Science</span>
         <h1>Neyaz<br><em>Ahmed</em></h1>
-        <span class="hero-tagline">Graduate Researcher &nbsp;·&nbsp; North South University &nbsp;·&nbsp; Dhaka, Bangladesh</span>
-        <p class="hero-statement">I study transport in porous media and nanofluids with finite-volume CFD, and build reduced-order and neural-differential-equation models to make such simulations faster.</p>
+        <span class="hero-tagline">Graduate Research Assistant &nbsp;·&nbsp; North South University &nbsp;·&nbsp; Dhaka, Bangladesh</span>
+        <p class="hero-statement">I use finite-volume CFD and data-driven surrogate models to study convective heat transfer, from phase-change thermal storage to porous cavities and geothermal systems.</p>
         <span class="hero-status"><span class="status-dot"></span>Open to Ph.D. positions &amp; research collaborations</span>
         <div class="hero-actions">
           <a class="btn btn-primary" href="cv.pdf" target="_blank" rel="noopener" data-requires="cv.pdf">Download CV ↓</a>
@@ -545,8 +546,8 @@
         <span class="eq-label">Navier–Stokes (incompressible)</span>
         ∂<b>u</b>/∂t + (<b>u</b>·∇)<b>u</b> = −∇p + ν∇²<b>u</b> + <b>f</b><br>
         ∇·<b>u</b> = 0<br><br>
-        <span class="eq-label">Continuity in Porous Media</span>
-        ∂(φρ)/∂t + ∇·(ρ<b>u</b>) = 0
+        <span class="eq-label">Energy · Enthalpy–Porosity</span>
+        ∂(ρH)/∂t + ∇·(ρ<b>u</b>H) = ∇·(k∇T)
       </div>
     </header>
 
@@ -567,234 +568,283 @@
             <img src="photo.jpg" alt="Portrait of Neyaz Ahmed" onerror="this.remove()" />
           </div>
           <div class="bio">
-            <p>I am a graduate researcher in Applied Mathematics and Computational Science at North South University, working where computational fluid dynamics meets numerical analysis and scientific machine learning.</p>
-            <p>My thesis studies transport phenomena in porous media and nanoparticle-laden flows using finite-volume methods. Alongside it, I develop data-driven models — proper orthogonal decomposition and neural differential equations — that augment and accelerate classical solvers. An engineering background (B.S., Petroleum &amp; Mining Engineering) keeps my work grounded in real physical systems.</p>
-            <p>Longer term, I want to bring tools from topological data analysis and differential topology to complex dynamical systems, building geometrically informed models that are robust beyond coordinate-based approaches.</p>
+            <p>I am an M.S. student and Graduate Research Assistant in Applied Mathematics and Computational Science at North South University, working in the Department of Mathematics &amp; Physics on computational fluid dynamics and convective heat transfer.</p>
+            <p>My thesis compares the thermal storage performance of phase change materials (PCM) and nano-enhanced PCM in cavities with serrated heat sources, using transient melting simulations with the enthalpy–porosity formulation. My wider research combines finite-volume CFD with data-driven surrogate modelling for heat transfer in cavities, porous media, magnetohydrodynamic flows and geothermal systems; three manuscripts from this work are under review.</p>
+            <p>I came to applied mathematics from engineering (B.S., Petroleum &amp; Mining Engineering, SUST), and I also write my own solvers, including an in-house D2Q9 lattice Boltzmann code in C.</p>
 
             <div class="research-tags" aria-label="Research interests">
-              <span class="tag">CFD &amp; Porous Media</span>
-              <span class="tag">Nanofluid Transport</span>
-              <span class="tag">Finite Volume Methods</span>
-              <span class="tag">Reduced-Order Models</span>
-              <span class="tag">Neural ODEs</span>
-              <span class="tag">Nonlinear PDEs</span>
-              <span class="tag">TDA</span>
+              <span class="tag">Computational Fluid Dynamics</span>
+              <span class="tag">Convective Heat Transfer</span>
+              <span class="tag">Phase Change &amp; Thermal Storage</span>
+              <span class="tag">Magnetohydrodynamics</span>
+              <span class="tag">Lattice Boltzmann Methods</span>
+              <span class="tag">Scientific ML &amp; Surrogate Models</span>
             </div>
           </div>
         </div>
 
         <!-- § 2 Research -->
         <span class="section-marker" id="research">§ 2. Research</span>
-        <h2>Thesis &amp; Selected Projects</h2>
+        <h2>Thesis &amp; Research Projects</h2>
 
         <div class="feature">
-          <div class="feature-kicker"><span>M.S. Thesis · Current</span><span class="when">North South University · Expected 2026</span></div>
-          <h3>Computational Fluid Dynamics of Transport Phenomena in Porous Media and Nanofluids</h3>
-          <p>Finite-volume modelling of flow and transport through porous structures and nanoparticle suspensions, with attention to the numerical stability and convergence of the discretisation.</p>
-          <div class="feature-meta">Supervisor: Dr. Preetom Nag, Associate Professor, North South University</div>
+          <div class="feature-kicker"><span>M.S. Thesis · In progress</span><span class="when">North South University</span></div>
+          <h3>Comparative Analysis of PCM and Nano-Enhanced PCM Thermal Storage Performance in Cavities with Serrated Heat Sources</h3>
+          <p>Effects of geometric morphology and material properties on melting and storage performance, studied through transient melting simulations in ANSYS Fluent with the enthalpy–porosity formulation.</p>
+          <div class="feature-meta">Advisor: Dr. Preetom Nag, Associate Professor, North South University</div>
         </div>
+
+        <h3 class="sub-heading">Graduate Research — Department of Mathematics &amp; Physics, NSU</h3>
+        <p class="section-lede">Finite-volume CFD and data-driven surrogate modelling of convective heat transfer in cavities, porous media and geothermal systems. Manuscripts are listed under <a href="#publications" style="color:var(--coffee);">Publications</a>.</p>
 
         <h3 class="sub-heading">Selected Projects</h3>
         <div class="hub-grid">
-          <a href="https://github.com/neyaz-ahmed/Fluid-Flow-FVM-POD" target="_blank" rel="noopener" class="hub-card">
+          <div class="hub-card">
             <div class="hub-num">01.</div>
             <div class="hub-body">
-              <h3>Finite-Volume Flow Solver with POD Model Reduction</h3>
-              <p>Finite-volume simulation of fluid flow, combined with proper orthogonal decomposition to build a fast reduced-order model of the dynamics.</p>
+              <h3>CFD of an AGR Reactor Channel with Kriging-Based Optimisation</h3>
+              <p>Temperature and velocity profiles in an advanced gas-cooled reactor: the impact of rib geometry, with the temperature profile optimised using the Kriging method.</p>
               <div class="hub-meta">
-                <span class="hub-badge">Python</span>
-                <span class="hub-badge">FVM</span>
-                <span class="hub-badge">POD / ROM</span>
-                <span class="hub-badge">Navier–Stokes</span>
+                <span class="hub-badge">Big Matrix Lab</span>
+                <span class="hub-badge">CFD</span>
+                <span class="hub-badge">Kriging</span>
+                <span class="hub-badge">Optimisation</span>
               </div>
             </div>
-            <div class="hub-arrow" aria-label="View code">↗</div>
-          </a>
-
-          <a href="https://github.com/neyaz-ahmed/NeuralTrafficFlow" target="_blank" rel="noopener" class="hub-card">
-            <div class="hub-num">02.</div>
-            <div class="hub-body">
-              <h3>Neural ODE–PDE Hybrid Model of Traffic Flow</h3>
-              <p>A neural ODE learns continuous-time density and velocity dynamics while the LWR conservation law acts as a physical prior; trained end-to-end through numerical solvers.</p>
-              <div class="hub-meta">
-                <span class="hub-badge">Python</span>
-                <span class="hub-badge">Neural ODEs</span>
-                <span class="hub-badge">LWR Model</span>
-                <span class="hub-badge">Conservation Laws</span>
-              </div>
-            </div>
-            <div class="hub-arrow" aria-label="View code">↗</div>
-          </a>
+          </div>
 
           <a href="https://github.com/neyaz-ahmed/Energy-Efficiency-ML" target="_blank" rel="noopener" class="hub-card">
-            <div class="hub-num">03.</div>
+            <div class="hub-num">02.</div>
             <div class="hub-body">
-              <h3>Machine Learning for Building Energy Efficiency</h3>
-              <p>Prediction of building energy efficiency from design parameters, with statistical benchmarking of competing model architectures.</p>
+              <h3>Benchmarking Machine Learning Models for Building Energy Efficiency</h3>
+              <p>Statistical benchmarking of machine learning models for predicting building energy efficiency, validated with 10-fold cross-validation.</p>
               <div class="hub-meta">
+                <span class="hub-badge">Big Matrix Lab</span>
                 <span class="hub-badge">Python</span>
-                <span class="hub-badge">Scikit-learn</span>
-                <span class="hub-badge">Regression</span>
+                <span class="hub-badge">10-fold CV</span>
               </div>
             </div>
             <div class="hub-arrow" aria-label="View code">↗</div>
           </a>
+
+          <div class="hub-card">
+            <div class="hub-num">03.</div>
+            <div class="hub-body">
+              <h3>Machine Learning Models for Breast Cancer Diagnosis</h3>
+              <p>Comparative performance benchmarking of machine learning classifiers, with statistical validation of the results.</p>
+              <div class="hub-meta">
+                <span class="hub-badge">Big Matrix Lab</span>
+                <span class="hub-badge">Classification</span>
+                <span class="hub-badge">Statistical Validation</span>
+              </div>
+            </div>
+          </div>
 
           <div class="hub-card">
             <div class="hub-num">04.</div>
             <div class="hub-body">
-              <h3>Supercritical CO₂ Flow and Heat Transfer in Microtubes</h3>
-              <p>Numerical investigation of heat transfer to supercritical carbon dioxide in microtubes, where strong property variation near the pseudo-critical point governs the flow.</p>
+              <h3>Fluid Flow Through a 3D 90° Pipe Bend</h3>
+              <p>Comparative numerical analysis of flow through a three-dimensional 90° angular piping bend.</p>
               <div class="hub-meta">
+                <span class="hub-badge">Applied Mathematics Project · NSU</span>
                 <span class="hub-badge">CFD</span>
-                <span class="hub-badge">Heat Transfer</span>
-                <span class="hub-badge">Numerical Simulation</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="hub-card">
-            <div class="hub-num">05.</div>
-            <div class="hub-body">
-              <h3>Machine Learning for Semiconductor Band Gaps</h3>
-              <p>Data-driven prediction of band gaps and band alignments in semiconductor materials.</p>
-              <div class="hub-meta">
-                <span class="hub-badge">Python</span>
-                <span class="hub-badge">Materials Informatics</span>
               </div>
             </div>
           </div>
         </div>
+        <p class="section-lede" style="margin-top:0.75rem;">More code on <a href="https://github.com/neyaz-ahmed" target="_blank" rel="noopener" style="color:var(--coffee);">GitHub ↗</a></p>
 
         <!-- § 3 Publications -->
         <span class="section-marker" id="publications">§ 3. Publications</span>
-        <h2>Publications &amp; Manuscripts</h2>
+        <h2>Manuscripts Under Review</h2>
 
         <div class="acc-list">
-          <!-- Add papers here, newest first, in this format:
-          <div class="acc-item">
-            <div class="acc-year">2026</div>
-            <div class="acc-main">
-              <strong>N. Ahmed</strong>, P. Nag. “Title of the paper.”
-              <span class="acc-sub">Journal Name, vol(issue), pages · doi:10.xxxx/xxxxx</span>
-            </div>
-          </div>
+          <!-- When a paper is published, add authors, journal and DOI, e.g.
+          <span class="acc-sub">N. Ahmed, P. Nag · Journal Name (2026) · doi:10.xxxx/xxxxx</span>
           -->
           <div class="acc-item">
-            <div class="acc-year">In prep.</div>
+            <div class="acc-year">Under review</div>
             <div class="acc-main">
-              Manuscript on CFD of transport phenomena in porous media and nanofluids, arising from M.S. thesis research.
-              <span class="acc-sub">With Dr. Preetom Nag, North South University</span>
+              Data-Driven Surrogate Modeling of Cylinder-Wise Heat Transfer in Conjugate MHD Mixed Convection of a Hybrid Ferrofluid
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-year">Under review</div>
+            <div class="acc-main">
+              Numerical Investigation of a Double-Tube Vertical Geothermal Exchanger in Pile Foundations
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-year">Under review</div>
+            <div class="acc-main">
+              Numerical Investigation of Natural Convection in a Porous Square Cavity with Discrete Cylindrical Heat Sources
             </div>
           </div>
         </div>
 
-        <!-- § 4 Education & Teaching -->
-        <span class="section-marker" id="education">§ 4. Education &amp; Teaching</span>
-        <h2>Education &amp; Experience</h2>
+        <!-- § 4 Education -->
+        <span class="section-marker" id="education">§ 4. Education</span>
+        <h2>Education</h2>
 
         <div class="acc-list">
           <div class="acc-item">
-            <div class="acc-year">Exp. 2026</div>
+            <div class="acc-year">Ongoing</div>
             <div class="acc-main">
               <strong>M.S., Applied Mathematics &amp; Computational Science</strong> — North South University, Dhaka
-              <span class="acc-note">Thesis: CFD of transport phenomena in porous media and nanofluids · Supervisor: Dr. Preetom Nag</span>
+              <span class="acc-sub">GPA 3.56 (ongoing) · Advisor: Dr. Preetom Nag</span>
+              <span class="acc-note">Thesis (in progress): Comparative Analysis of PCM and NEPCM Thermal Storage Performance in Cavities with Serrated Heat Sources</span>
             </div>
           </div>
           <div class="acc-item">
             <div class="acc-year">B.S.</div>
             <div class="acc-main">
               <strong>B.S., Petroleum &amp; Mining Engineering</strong> — Shahjalal University of Science &amp; Technology (SUST), Sylhet
+              <span class="acc-sub">Advisor: Dr. Labiba Nusrat Jahan</span>
+              <span class="acc-note">Thesis: Consumer Gas Risk Analysis in Bangladesh — A Case Study of Utility Gas and LPG Safety</span>
             </div>
           </div>
           <div class="acc-item">
             <div class="acc-year">Tests</div>
             <div class="acc-main">
-              <strong>GRE 329 / 340</strong> &nbsp;·&nbsp; <strong>IELTS Academic 8.5</strong>
-              <span class="acc-sub">GRE: Quantitative 170 · Verbal 159 &nbsp;|&nbsp; IELTS: Listening 9.0 · Reading 8.5 · Writing 8.0 · Speaking 8.0</span>
-            </div>
-          </div>
-          <div class="acc-item">
-            <div class="acc-year">2024 – now</div>
-            <div class="acc-main">
-              <strong>Teaching Assistant, Applied Mathematics</strong> — North South University
-            </div>
-          </div>
-          <div class="acc-item">
-            <div class="acc-year">Ongoing</div>
-            <div class="acc-main">
-              <strong>Private Mentor</strong> — Mathematics, Scientific Programming &amp; IELTS preparation
+              <strong>GRE 329</strong> &nbsp;·&nbsp; <strong>IELTS Academic 8.0</strong>
+              <span class="acc-sub">GRE: Quantitative 170 (91st pct.) · Verbal 159 (80th pct.)</span>
+              <span class="acc-sub">IELTS: Listening 8.0 · Reading 9.0 · Writing 6.5 · Speaking 7.5</span>
             </div>
           </div>
         </div>
 
-        <!-- § 5 Awards -->
-        <span class="section-marker" id="awards">§ 5. Distinctions</span>
+        <!-- § 5 Experience -->
+        <span class="section-marker" id="experience">§ 5. Experience</span>
+        <h2>Teaching &amp; Professional Experience</h2>
+
+        <div class="acc-list">
+          <div class="acc-item">
+            <div class="acc-year">Current</div>
+            <div class="acc-main">
+              <strong>Graduate Research Assistant</strong> — Dept. of Mathematics &amp; Physics, North South University
+              <span class="acc-sub">Finite-volume CFD and surrogate modelling of convective heat transfer</span>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-year">2025 – now</div>
+            <div class="acc-main">
+              <strong>Teaching Assistant, Applied Mathematics</strong> — North South University
+              <span class="acc-sub">Supported graduate-level courses, lab sessions and problem-solving tutorials</span>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-year">2021 – now</div>
+            <div class="acc-main">
+              <strong>One-on-One Mentor</strong> — Mathematics &amp; Programming
+              <span class="acc-sub">Individual guidance and project supervision for students</span>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-year">Internship</div>
+            <div class="acc-main">
+              <strong>Engineering Intern</strong> — Baset Prokoushol Limited, Dhaka
+              <span class="acc-sub">Site investigations, soil testing and field data collection with surveying equipment</span>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-year">Training</div>
+            <div class="acc-main">
+              <strong>Technical Institute for Chemical Industries (TICI)</strong>, Bangladesh
+              <span class="acc-sub">Industrial water treatment · process safety &amp; accident prevention · PLC/SCADA automation · industrial pumps · electrical maintenance</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- § 6 Awards -->
+        <span class="section-marker" id="awards">§ 6. Distinctions</span>
         <h2>Honours &amp; Awards</h2>
 
         <div class="acc-list">
           <div class="acc-item">
-            <div class="acc-year">2013</div>
-            <div class="acc-main">
-              <strong>Champion</strong> — Bangladesh Mathematical Olympiad (BdMO)
-              <span class="acc-sub">National Round</span>
-            </div>
-          </div>
-          <div class="acc-item">
             <div class="acc-year">SUST</div>
             <div class="acc-main">
-              <strong>Hult Prize — Institutional Champion</strong>, Shahjalal University of Science &amp; Technology
-              <span class="acc-sub">Advanced to the Regional Finals, Mumbai, India · global social-entrepreneurship competition</span>
+              <strong>Champion, Hult Prize at SUST</strong>
+              <span class="acc-sub">Advanced to the Regional Finals, Mumbai, India</span>
             </div>
           </div>
           <div class="acc-item">
             <div class="acc-year">2017</div>
             <div class="acc-main">
-              <strong>Bronze Award</strong> — The Duke of Edinburgh’s International Award
-              <span class="acc-sub">International Award for Young People</span>
+              <strong>National Board Scholarship</strong> — Higher Secondary Certificate (HSC) Examination
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-year">2017</div>
+            <div class="acc-main">
+              <strong>Bronze Medal</strong> — Duke of Edinburgh International Award Programme
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-year">2015</div>
+            <div class="acc-main">
+              <strong>National Board Scholarship</strong> — Secondary School Certificate (SSC) Examination
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-year">2013</div>
+            <div class="acc-main">
+              <strong>Champion</strong> — National Mathematics Olympiad
             </div>
           </div>
         </div>
 
-        <!-- § 6 Skills -->
-        <span class="section-marker" id="skills">§ 6. Technical Competencies</span>
+        <!-- § 7 Skills -->
+        <span class="section-marker" id="skills">§ 7. Technical Competencies</span>
         <h2>Skills &amp; Methods</h2>
 
         <div class="skills-grid">
           <div class="skill-block">
-            <span class="skill-cat">Mathematical Methods</span>
+            <span class="skill-cat">CFD &amp; Multiphysics</span>
             <ul>
-              <li>Linear &amp; Multilinear Algebra</li>
-              <li>Partial Differential Equations</li>
-              <li>Numerical Analysis</li>
-              <li>Dynamical Systems</li>
+              <li>ANSYS Fluent</li>
+              <li>COMSOL Multiphysics</li>
+              <li>Lattice Boltzmann Method (in-house D2Q9 solver, C)</li>
             </ul>
           </div>
           <div class="skill-block">
-            <span class="skill-cat">Simulation &amp; Numerics</span>
+            <span class="skill-cat">Scientific Computing</span>
             <ul>
-              <li>Finite Volume Methods</li>
-              <li>Reduced-Order Modelling (POD)</li>
-              <li>ANSYS Fluent · COMSOL Multiphysics</li>
-              <li>High-Performance Computing</li>
+              <li>Numerical Methods</li>
+              <li>Finite Volume &amp; Finite Difference Methods</li>
+              <li>HPC — OpenMP, MPI, CUDA</li>
             </ul>
           </div>
           <div class="skill-block">
-            <span class="skill-cat">Programming &amp; ML</span>
+            <span class="skill-cat">Programming</span>
             <ul>
-              <li>Python — NumPy, SciPy, Matplotlib</li>
-              <li>PyTorch · TensorFlow · Scikit-learn</li>
-              <li>Physics-Informed ML · Neural ODEs</li>
-              <li>MATLAB</li>
+              <li>Python — NumPy, SciPy, PyTorch, TensorFlow</li>
+              <li>MATLAB / Simulink</li>
+              <li>C</li>
             </ul>
           </div>
           <div class="skill-block">
-            <span class="skill-cat">Tools &amp; Languages</span>
+            <span class="skill-cat">ML for Physical Systems</span>
             <ul>
-              <li>LaTeX · Git / GitHub</li>
-              <li>English — IELTS Academic 8.5 (C2)</li>
-              <li>Bengali — Native</li>
+              <li>Hybrid Physics–ML Modelling</li>
+              <li>Surrogate Modelling</li>
+              <li>Git / GitHub · LaTeX</li>
             </ul>
+          </div>
+        </div>
+
+        <h3 class="sub-heading">Courses &amp; Memberships</h3>
+        <div class="acc-list">
+          <div class="acc-item">
+            <div class="acc-year">2020</div>
+            <div class="acc-main"><strong>Machine Learning</strong> — Stanford University / Coursera</div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-year">Course</div>
+            <div class="acc-main"><strong>CS50’s Introduction to Programming with Python</strong> — Harvard University / edX</div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-year">2017 – now</div>
+            <div class="acc-main"><strong>Member</strong> — Society of Petroleum Engineers (SPE)</div>
           </div>
         </div>
 
@@ -808,10 +858,10 @@
           <div class="sidenote">
             <span class="sidenote-label">At a Glance</span>
             <ul>
-              <li><strong>Position</strong><span>M.S. Researcher &amp; Teaching Assistant</span></li>
-              <li><strong>Affiliation</strong><span>North South University, Dhaka</span></li>
-              <li><strong>Focus</strong><span>CFD · Porous media · Scientific ML</span></li>
-              <li><strong>Seeking</strong><span><span class="status-dot"></span>Ph.D. positions in applied mathematics, computational science &amp; scientific ML</span></li>
+              <li><strong>Position</strong><span>Graduate Research Assistant &amp; Teaching Assistant</span></li>
+              <li><strong>Affiliation</strong><span>Dept. of Mathematics &amp; Physics, North South University</span></li>
+              <li><strong>Focus</strong><span>CFD · Convective heat transfer · Surrogate modelling</span></li>
+              <li><strong>Seeking</strong><span><span class="status-dot"></span>Ph.D. positions in CFD, heat transfer &amp; scientific ML</span></li>
             </ul>
           </div>
 
@@ -828,20 +878,30 @@
 
           <!-- References -->
           <div class="sidenote">
-            <span class="sidenote-label">Academic Reference</span>
+            <span class="sidenote-label">References</span>
             <ul>
               <li>
                 <strong>Dr. Preetom Nag</strong>
-                <span>Associate Professor, North South University — Thesis Supervisor</span>
+                <span>Associate Professor, Dept. of Mathematics &amp; Physics, North South University</span>
                 <span><a href="mailto:preetom.nag@northsouth.edu">preetom.nag@northsouth.edu</a></span>
+              </li>
+              <li>
+                <strong>Dr. Mamun Molla</strong>
+                <span>Professor &amp; Chair, Dept. of Mathematics &amp; Physics, North South University</span>
+                <span><a href="mailto:mamun.molla@northsouth.edu">mamun.molla@northsouth.edu</a></span>
+              </li>
+              <li>
+                <strong>Dr. Labiba Nusrat Jahan</strong>
+                <span>Associate Professor, Dept. of Petroleum &amp; Mining Engineering, SUST</span>
+                <span><a href="mailto:labiba-pme@sust.edu">labiba-pme@sust.edu</a></span>
               </li>
             </ul>
           </div>
 
           <!-- Decorative formula -->
           <div class="side-formula" aria-hidden="true">
-            <span class="fl">Fourier Transform</span>
-            f̂(ξ) = ∫ f(x) e<sup>−2πixξ</sup> dx
+            <span class="fl">Fourier’s Law</span>
+            <b>q</b> = −k ∇T
           </div>
 
         </div>
@@ -853,7 +913,7 @@
     <footer>
       <div class="footer-left">
         <span>© 2026 Neyaz Ahmed &nbsp;—&nbsp; Dhaka, Bangladesh</span>
-        <span class="footer-fields">Applied Mathematics · Computational Science · Scientific ML</span>
+        <span class="footer-fields">Computational Fluid Dynamics · Heat Transfer · Scientific ML</span>
       </div>
       <div class="footer-links">
         <a href="cv.pdf" target="_blank" rel="noopener" data-requires="cv.pdf">Download CV ↓</a>
